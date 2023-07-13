@@ -1,0 +1,111 @@
+.item {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }
+
+  #filter-options {
+    margin: 20px;
+    text-align: center;
+  }
+  #filter-options select{
+    border-radius: 5px;
+    background-color: aliceblue;
+    
+  }
+  #filter-options label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  #filterable-div {
+    margin-top: 20px;
+  }
+
+  @media screen and (max-width: 576px) {
+    #filter-options select {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media screen and (min-width: 577px) and (max-width: 768px) {
+    #filter-options {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 10px;
+    }
+
+    #filter-options select {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 992px) {
+    #filter-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+    }
+
+    #filter-options select {
+      width: 100%;
+    }
+  }
+  .input-field ,
+.input-fields{
+    font-size: 15px;
+    background: rgba(55, 2, 2, 0.2);
+    color: #270707;
+    height: 35px;
+    width: 10%;
+    padding: 0 10px 0 45px;
+    border: none;
+    border-radius: 30px;
+    outline: none;
+    transition: .2s ease;
+}
+.input-fields{
+    background-color: rgb(117, 113, 113);
+}
+.input-field:hover, .input-field:focus{
+    background: rgba(3, 3, 3, 0.25);
+}
+
+  @media screen and (min-width: 993px) and (max-width: 1200px) {
+    #filter-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+    }
+
+    #filter-options select {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 1201px) and (max-width: 1400px) {
+    #filter-options {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-gap: 10px;
+    }
+
+    #filter-options select {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 1401px) {
+    #filter-options {
+      display: flex;
+      justify-content: center;
+    }
+
+    #filter-options select {
+      margin: 0 10px;
+    }
+  }
