@@ -2,6 +2,9 @@
 <?php
 session_start();
 
+if(isset($_SESSION['is_login']) && $_SESSION == true){
+    header('Location:index.php');
+}
     $error_message='';
 function validate_form($data) {
     $data = trim($data);
@@ -10,19 +13,21 @@ function validate_form($data) {
     return $data;
   }
 
-if ($_POST){
+  if ($_POST){
     $email = validate_form($_POST['email']);
-    $password= validate_form($_POST['password']);
-    $pass = password_hash($password,PASSWORD_DEFAULT);  
+    $pwd= validate_form($_POST['password']);
+    $pass = password_hash($pwd,PASSWORD_DEFAULT);  
     include 'config/db.php'; 
     $sql = "SELECT * FROM users WHERE email='$email' ";
     $result = $conn->query($sql);
          if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
              // output data of each row
-      if (password_verify($pass, $row['password'])) {
-                      header("Location: index.php");
-        exit();
+
+      if (password_verify($pwd, $row['password'])) {
+        $_SESSION['is_login'] = true;
+                          header("Location: index.php");
+                        exit();
     } else {
         // Password is incorrect
         $error_message = "Incorrect password.";
@@ -32,7 +37,6 @@ if ($_POST){
     $error_message = "User does not exist.";
 }
 }
-
 ?>
 
 
@@ -95,7 +99,7 @@ if ($_POST){
             </form>
             <div class="one-col align-items-center">
                 <div class="top two" >
-                    <span><a href="#">Forgot password?</a></span>
+                    <span><a href="forgot.php">Forgot password?</a></span>
                 </div>
             </div>
         </div>
