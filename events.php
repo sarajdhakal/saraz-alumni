@@ -43,118 +43,65 @@
             </div>
           </div>
 
-          <div id="foraa">
-            <div class="container1">
-              <h1 class="form-title">Add new Event
-                <span class="close">&times;</span>
-              </h1>
-              <form action="#">
-                  <div class="main-user-info">
-                      <div class="user-input-box">
-                          <label for="fullName"> Event Title</label>
-                          <input type="text" id="fullName" name="fullName" placeholder="Event Title" required />
-                      </div>
-                      <div class="user-input-box">
-                          <label for="username">Organizer</label>
-                          <input type="text" id="username" name="username" placeholder="Organizer?" required />
-                      </div>
-                      <div class="user-input-box">
-                          <label for="email">Venue</label>
-                          <input type="email" id="email" name="email" placeholder="Venue" required />
-                      </div>
-                      <div class="user-input-box">
-                          <label for="phoneNumber">Date</label>
-                          <input type="datetime-local" id="phoneNumber" name="phoneNumber" required />
-                      </div>
-                      <div class="user-input-box">
-                          <label for="textarea">Description of Event:</label>
-                            <textarea id="w3review" name="" placeholder="Write a short description of your Event" rows="4" cols="50" required></textarea>
-                      </div>
-                      <div class="user-input-box">
-                           <label for="imageInput">Bannner of your Event:</label>
-                          <input type="file" id="imageInput" name="imageInput" accept="image/*">
-                          <input type="submit" value="Upload">
-                      </div>
-                  </div>
-                  <div class="form-submit-btn">
-                      <input type="submit" value="Submit">
-                  </div>
-              </form>
-          </div>
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch text-center">
+            
+                    <div class="col-lg-4 col-md-6 d-flex align-items-stretch text-center">
             <div class="member">
               <span id="boot-icon" class="bi bi-calendar-event" style="font-size:5rem"></span>
               <div class="member-content">
-                <a href="#"> <h4>Add New Event</h4></a>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add New Event</button>                
               </div>
             </div>
-          </div>
-          </div>
+                    </div>
         </div>
 
       </div>
-    </section><!-- End Events Section -->
+    </section><!-- End Events Section -->>
+
+    <div class="modal fade-out" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action class="row g-3">
+  <div class="col-md-6">
+  <form action="">
+    <label for="inputEmail4" class="form-label">Title</label>
+    <input type="text" class="form-control" id="inputEmail4" placeholder="Title of Event" required>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Organizer</label>
+    <input type="text" class="form-control" id="inputPassword4" placeholder="Organizer?" required>
+  </div>
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Venue</label>
+    <input type="text" class="form-control" id="inputEmail4" placeholder="Venue" required>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Date</label>
+    <input type="datetime-local" class="form-control" id="inputPassword4" placeholder="Organizer?" required>
+  </div>
+  <div class="col-12">
+    <label for="inputAddress" class="form-label">Description</label>
+    <textarea class="form-control" rows="4" cols="50" placeholder="Description of Event" required></textarea>
+  </div>
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">Banner of Event(Image Only)</label>
+    <input type="file" class="form-control" id="inputimage" name="banner" accept="image/*">
+  </div>
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">ADD</button>
+      </div>
+</form>
+</form>
+    </div>
+  </div>
+</div>
 
   </main><!-- End #main -->
 
- <!-- ======= Footer ======= -->
- <footer id="footer">
-
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>Alumni Management System</h3>
-          <p> Bharatpur- Chitwan <br><br>
-            <strong>Phone:</strong>#<br>
-            <strong>Email:</strong> hellohi@gmail.com<br>
-          </p>
-        </div>
-
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="events.php">Events</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container d-md-flex py-4">
-
-    <div class="me-md-auto text-center text-md-start">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Saraz</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
-        Designed by <a href="#">Saraz Coorporation</a>
-      </div>
-    </div>
-  </div>
-</footer><!-- End Footer -->
-
-<div id="preloader"></div>
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-<!-- Vendor JS Files -->
-<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
-
-<!-- Template Main JS File -->
-<script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+  <?php include('head/footer.php') ?>
