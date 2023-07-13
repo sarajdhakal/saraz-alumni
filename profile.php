@@ -24,8 +24,8 @@
             <p class="text-muted mb-1">Full Stack Developer</p>
             <p class="text-muted mb-4">Bharatpur-15,Chitwan</p>
             <div class="d-flex justify-content-center mb-2">
-              <button type="button" class="btn btn-primary">Edit Profile</button>
-                      </div>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Update Profile</button>
+                </div>
           </div>
         </div>
              </div>
@@ -55,7 +55,7 @@
                 <p class="mb-0">Phone</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">9866115177</p>
+                <p class="text-muted mb-0">9876543210</p>
               </div>
             </div>
             <hr>
@@ -85,26 +85,13 @@
           <div class="card-body p-0">
                   <ul class="list-group list-group-flush rounded-3">
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fas fa-globe fa-lg text-warning"></i>
-                <p class="mb-0">https://mdbootstrap.com</p>
+                               <p class="mb-0">facebook.com</p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                <p class="mb-0">mdbootstrap</p>
+                               <p class="mb-0">instagram.com</p>
               </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                <p class="mb-0">@mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                <p class="mb-0">mdbootstrap</p>
-              </li>
-            </ul>
+            
+             </ul>
           </div>
         </div>
           <!-- <div class="col-md-6">
@@ -146,73 +133,87 @@
 </section>
     <!-- End of profile section -->
 
+    <div class="modal fade-out" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form action class="row g-3">
+  <div class="col-md-6">
+  <form action="">
+    <label for="inputEmail4" class="form-label">Name</label>
+    <input type="text" class="form-control-plaintext" id="inputEmail4" value="Saraj Dhakal" readonly>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Email</label>
+    <input type="text" class="form-control-plaintext" id="inputPassword4" value="sarajdhakal@gmail.com" required>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Batch</label>
+    <input type="text" class="form-control-plaintext" id="inputPassword4" value="2020" readonly>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Phone Number</label>
+    <input type="text" class="form-control" id="inputPassword4" placeholder="9876543210" >
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputEmail4" class="form-label">Role</label>
+    <select class="form-control col-md-6">
+  <option>Student</option>
+  <option>Alumni</option>
+</select>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Passout Year</label>
+    <input type="date" class="form-control" id="address"  >
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Address</label>
+    <input type="text" class="form-control" id="address" placeholder=" Address" >
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">University</label>
+    <input type="text" class="form-control" id="address" placeholder=" University" >
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">College</label>
+    <input type="text" class="form-control" id="address" placeholder=" College" >
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Faculty</label>
+    <input type="text" class="form-control" id="address" placeholder=" Faculty" >
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Work(If any)</label>
+    <input type="text" class="form-control" id="address" placeholder=" Work" >
+  </div>
+  <div class="col-md-6">
+    <label for="inputAddress2" class="form-label">Profile Picture</label>
+    <input type="file" class="form-control" id="inputimage" name="banner" accept="image/*">
+  </div>
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">Social Media Contact</label>
+    <input type="text" class="form-control" id="inputimage" name="banner" placeholder="Add your Social Media Profile Link">
+  </div>
+  <div class="col-12">
+    <label for="inputAddress2" class="form-label">Social Media Contact</label>
+    <input type="text" class="form-control" id="inputimage" name="banner" placeholder="Add your Social Media Profile Link(Any Other)">
+  </div>
+       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Update</button>
+      </div>
+</form>
+</form>
+    </div>
+  </div>
+</div>
+
+
   </main><!-- End #main -->
 
-
-
-  
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Alumni Management System</h3>
-            <p> Bharatpur- Chitwan <br><br>
-              <strong>Phone:</strong>#<br>
-              <strong>Email:</strong> hellohi@gmail.com<br>
-            </p>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="events.php">Events</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-    <div class="container d-md-flex py-4">
-
-      <div class="me-md-auto text-center text-md-start">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Saraz</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
-          Designed by <a href="#">Saraz Coorporation</a>
-        </div>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+<?php include('head/footer.php') ?>
