@@ -1,5 +1,10 @@
-<?php include 'head/header.php' ?>
+<?php include 'head/header.php' ;
+session_start();
+if (!isset($_SESSION['is_login']) && $_SESSION == false) {
+  header('Location:login.php');
+}
 
+?>
 
   <main id="main">
 
@@ -28,18 +33,18 @@
           <div class="col-lg-4">
 
             <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Host</h5>
-              <p><a href="#">Admin</a></p>
+              <h5>Organizer</h5>
+              <p>Admin</p>
             </div>
 
             <div class="course-info d-flex justify-content-between align-items-center">
               <h5>Venue </h5>
-              <p> UTech college</p>
+              <p> United Technical college</p>
             </div>
 
             <div class="course-info d-flex justify-content-between align-items-center">
-              <h5>Available Seats</h5>
-              <p>30</p>
+              <h5>Type</h5>
+              <p>Cultural Event</p>
             </div>
 
             <div class="course-info d-flex justify-content-between align-items-center">
