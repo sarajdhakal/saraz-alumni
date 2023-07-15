@@ -1,4 +1,8 @@
-<?php include 'head/header.php' ?>
+<?php include 'head/header.php' ;
+if (!isset($_SESSION['is_login']) && $_SESSION == false) {
+  header('Location:login.php ? redirect = jobs-details.php');
+}
+?>
 
 
   <main id="main">
