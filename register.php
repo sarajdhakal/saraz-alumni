@@ -1,4 +1,9 @@
+
 <?php 
+include ('head/header.php');
+if(isset($_SESSION['is_login']) && $_SESSION == true){
+  header('Location:index.php');
+}
 $error_fname= $error_lname= $error_email= $error_pass= $error_rpass=$error_eyear=$error_pyear=$error_message=$error_message1='';
 
 function validate_form($data) {
@@ -50,8 +55,9 @@ function validate_form($data) {
         $sql = "INSERT INTO users (firstname, lastname, email, phone_number,password,role,gender,enrollment_year,passout_year) 
                    VALUES ('$fname', '$lname', '$email', '$phone','$pass','$role','$gender','$eyear','$pyear')";
                 if ($conn->query($sql) === true) {
-                        $error_message1='Successfully registered.';
-                }
+                  $error_message1='Successfully registered.';
+                        header('location:login.php');
+                                        }
                 else{
                                echo "Error: " . $sql . "<br>" . $conn->error;
                      }
@@ -60,33 +66,12 @@ function validate_form($data) {
   }
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
-<meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title> AMS -INDEX</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-  <link href="assets/img/2.png" rel="icon">
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-<!-- Vendor CSS Files -->
-<link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-<link href="assets/vendor/aos/aos.css" rel="stylesheet">
-<link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-<link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-<link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-<link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Template Main CSS File -->
+
 <link href="assets/css/loginpage.css" rel="stylesheet">
 </head>
-<body>
- 
+<main>
 <div class="wrapper">
 <!----------------------------- Form box ----------------------------------->    
     <div class="form-box">
@@ -94,7 +79,7 @@ function validate_form($data) {
       <div class="register-container" id="register">
           <div class="welcome"> Welcome to Alumni Management System</div>
             <div class="top">
-                <span>Have an account? <a href="login.php">Sign In</a></span>
+                <span>Have an account? <a href="login.php"><u>Sign In</a></u></span>
                 <header style="padding: 0px;">Sign Up</header>
                 <span style="color: red;"><?php echo $error_message1; ?></span>
                 <span style="color: red;"><?php echo $error_message; ?></span>
@@ -180,5 +165,4 @@ function validate_form($data) {
 
     </div>
 </div>
-</body>
-</html>-
+</main>
