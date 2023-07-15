@@ -77,7 +77,7 @@ function validate_form($data) {
             </form>
             <div class="one-col align-items-center">
                 <div class="top two" >
-                    <span><a href="#">Forgot password?</a></span>
+                    <span><a href="forgot.php">Forgot password?</a></span>
                 </div>
             </div>
         </div>
