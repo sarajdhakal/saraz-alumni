@@ -1,3 +1,12 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['is_login']) && $_SESSION == false){
+     header('Location:login.php');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,30 +38,38 @@
 </head>
 <body>
 
- <!-- ======= Header ======= -->
- <header id="header" class="fixed-top">
-  <div class="container d-flex align-items-center">
+   <!-- ======= Header ======= -->
+   <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+ <!-- Uncomment below if you prefer to use an image logo -->
+ <!-- <a href="index.php" class="logo me-auto"><img src="assets/img/2.png" alt="" class="img-fluid"></a> -->
+      <h1 class="logo me-auto"><a href="index.php" style="text-decoration: none;">Alumni Management System</a></h1>
 
-    <h1 class="logo me-auto"><a href="index.php">Alumni Management System</a></h1>
-    <!-- Uncomment below if you prefer to use an image logo -->
-    <!-- <a href="index.php" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a  <?php if (strpos($_SERVER['PHP_SELF'], 'index.php')) echo 'class="active"';?> href="index.php"  >Home</a></li>
+          <li><a  <?php if (strpos($_SERVER['PHP_SELF'], 'profile.php')) echo 'class="active"';?> href="profile.php"   >Profile</a></li>
+          <li><a  <?php if (strpos($_SERVER['PHP_SELF'], 'about.php')) echo 'class="active"';?> href="about.php"  >About</a></li>
+          <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'jobs.php')) echo 'class="active"';?> href="jobs.php" >Jobs</a></li>
+          <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'alumni.php')) echo 'class="active"';?> href="alumni.php"  >Alumni</a></li>
+          <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'events.php')) echo 'class="active"';?>  href="events.php">Events</a></li>
+                 
+          
+          <?php 
+if(!isset($_SESSION['is_login'])){?>
+   <li><a  <?php if (strpos($_SERVER['PHP_SELF'], 'login.php')) echo 'class="active"';?>href="login.php">Sign In</a></li> 
+   <li><a  <?php if (strpos($_SERVER['PHP_SELF'], 'register.php')) echo 'class="active"';?>href="register.php">Sign Up</a></li> 
+ <?php }
+else
+{?>   
+ <li><a href="logout.php">Sign Out</a></li> 
+<?php } ?>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+    </div>
+  </header><!-- End Header -->
 
-    <nav id="navbar" class="navbar order-last order-lg-0">
-      <ul>
-        <li><a href="index.php">Home</a></li>
-        <li><a href="profile.php">Profile</a></li>
-        <li><a href="about.php">About</a></li>
-        <li><a href="jobs.php">Jobs</a></li>
-        <li><a class="active" href="alumni.php">Alumni</a></li>
-        <li><a href="events.php">Events</a></li>
-
-      
-        <li><a href="login_page.php"> Logout</a></li>
-      </ul>
-      <i class="bi bi-list mobile-nav-toggle"></i>
-    </nav><!-- .navbar -->
-  </div>
-</header><!-- End Header -->
 
   <main id="main" data-aos="fade-in">
 
