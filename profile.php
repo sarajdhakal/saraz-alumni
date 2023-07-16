@@ -58,6 +58,8 @@ $row = $result->fetch_assoc();
         <div class="col-lg-8">
           <div class="card mb-4">
             <div class="card-body">
+            <h5 class="card-header">Profile Details</h5>
+            <div class="card-body">
               <div class="row">
                 <div class="col-sm-3">
                   <p class="mb-0">Full Name</p>
@@ -119,6 +121,7 @@ $row = $result->fetch_assoc();
 
               </ul>
             </div>
+          </div>
           </div>
               </div>
       </div>
