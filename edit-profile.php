@@ -22,6 +22,34 @@ function validate_form($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+if ($_POST){
+    $phone = validate_form($_POST['phone_number']);
+    $role= validate_form($_POST['role']);
+    $pyear = validate_form($_POST['passout_year']);
+    $address = validate_form($_POST['adddress']);
+    $college = validate_form($_POST['college']);
+    $university= validate_form($_POST['university']);
+    $faculty = validate_form($_POST['faculty']);
+    $work = validate_form($_POST['work']);
+    $scmedia1= validate_form($_POST['scmedia1']);
+    $scmedia2= validate_form($_POST['scmedia2']);
+    $flag= 0;
+    die('message');
+    if ($flag == 0){
+        $sql = "UPDATE users SET phone_number = '$phone', role = '$role', passout_year = '$pyear', 
+        adddress = '$address', college = '$college', university = '$university', 
+        faculty = '$faculty', work = '$work', scmedia1 = '$scmedia1', scmedia2 = '$scmedia2' 
+        WHERE email = $email";
+                if ($conn->query($sql) === true) {
+                  $error_message1='Successfully updated.';
+                        header('location:login.php');
+                                        }
+                else{
+                               echo "Error: " . $sql . "<br>" . $conn->error;
+                     }
+                    }
+
+}
 ?>
 <main id="main">
     <!-- ======= Breadcrumbs ======= -->
@@ -29,6 +57,7 @@ function validate_form($data)
         <div class="container">
             <h2>Profile</h2>
             <p>Edit and Update your Profile </p>
+            <span style="color: red;"><?php echo $error_message1; ?></span>
         </div>
     </div><!-- End Breadcrumbs -->
 
@@ -97,8 +126,8 @@ function validate_form($data)
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label for="language" class="form-label">Role</label>
-                                            <select id="language" class="select2 form-select">
+                                            <label for="role" class="form-label">Role</label>
+                                            <select id="role" name="role" class="select2 form-select">
                                                 <option value="Student">Student</option>
                                                 <option value="Alumni">Alumni</option>
                                             </select>
