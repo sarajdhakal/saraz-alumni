@@ -138,7 +138,7 @@ function validate_form($data)
                                         </div>
                                         <div class="mt-2">
                                             <button type="submit" class="btn btn-primary me-2">Save changes</button>
-                                            <button type="reset" class="btn btn-outline-secondary">Cancel</button>
+                                            <button type="reset" class="btn btn-outline-secondary"><a href="profile.php"> Cancel</button></a>
                                         </div>
                                 </form>
                             </div>
