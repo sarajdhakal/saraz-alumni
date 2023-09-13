@@ -6,8 +6,8 @@ if (!isset($_SESSION['is_login']) && $_SESSION == false) {
 }
 ?>
 <?php
-include 'head/header.php';
 include 'config/db.php';
+include 'head/header.php';
 
 $sql = "SELECT * FROM users where email='" . $_SESSION['email'] . " ' ";
 $email = $_SESSION['email'];
