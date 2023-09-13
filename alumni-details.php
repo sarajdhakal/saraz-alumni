@@ -20,7 +20,7 @@
               class="rounded-circle img-fluid" style="width: 150px;">
             <h5 class="my-3">Alumni Name</h5>
             <p class="text-muted mb-1 small">Alumni</p>
-            <p class="text-muted mb-1">Full Stack Developer</p>
+            <p class="text-muted mb-1"> Developer</p>
             <p class="text-muted mb-4">Bharatpur-15,Chitwan</p>
                   </div>
         </div>
