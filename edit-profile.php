@@ -4,10 +4,9 @@ $error_pyear = $error_message = $error_message1 = '';
 if (!isset($_SESSION['is_login']) && $_SESSION == false) {
     header('Location:login.php');
 }
-?>
-<?php
-include 'config/db.php';
+
 include 'head/header.php';
+include 'config/db.php';
 
 $sql = "SELECT * FROM users where email='" . $_SESSION['email'] . " ' ";
 $email = $_SESSION['email'];
@@ -22,33 +21,34 @@ function validate_form($data)
     $data = htmlspecialchars($data);
     return $data;
 }
-if ($_POST){
-    $phone = validate_form($_POST['phone_number']);
-    $role= validate_form($_POST['role']);
+if ($_POST) {
+    $role = validate_form($_POST['role']);
     $pyear = validate_form($_POST['passout_year']);
     $address = validate_form($_POST['adddress']);
     $college = validate_form($_POST['college']);
-    $university= validate_form($_POST['university']);
+    $university = validate_form($_POST['university']);
     $faculty = validate_form($_POST['faculty']);
     $work = validate_form($_POST['work']);
-    $scmedia1= validate_form($_POST['scmedia1']);
-    $scmedia2= validate_form($_POST['scmedia2']);
-    $flag= 0;
-    die('message');
-    if ($flag == 0){
-        $sql = "UPDATE users SET phone_number = '$phone', role = '$role', passout_year = '$pyear', 
-        adddress = '$address', college = '$college', university = '$university', 
-        faculty = '$faculty', work = '$work', scmedia1 = '$scmedia1', scmedia2 = '$scmedia2' 
-        WHERE email = $email";
-                if ($conn->query($sql) === true) {
-                  $error_message1='Successfully updated.';
-                        header('location:login.php');
-                                        }
-                else{
-                               echo "Error: " . $sql . "<br>" . $conn->error;
-                     }
-                    }
+    $scmedia1 = validate_form($_POST['scmedia1']);
+    $scmedia2 = validate_form($_POST['scmedia2']);
 
+    $sql = "UPDATE users SET
+        role = '$role', 
+        passout_year = '$pyear', 
+        adddress = '$address',
+         college = '$college', 
+         university = '$university', 
+        faculty = '$faculty',
+         work = '$work', 
+         scmedia1 = '$scmedia1',
+          scmedia2 = '$scmedia2' 
+        WHERE email ='$email' ";
+    $result = mysqli_query($conn, $sql);
+    if ($result) {
+        $error_message1 = 'Successfully updated.';
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
 }
 ?>
 <main id="main">
@@ -100,7 +100,7 @@ if ($_POST){
                             </div>
                             <hr class="my-0" />
                             <div class="card-body">
-                                <form id="formAccountSettings" method="POST" action="edit-profile.php">
+                                <form method="POST" action="edit-profile.php">
                                     <div class="row">
                                         <div class="mb-3 col-md-6">
                                             <label for="firstName" class="form-label">First Name</label>
@@ -121,24 +121,42 @@ if ($_POST){
                                         <div class="mb-3 col-md-6">
                                             <label class="form-label" for="phoneNumber">Phone Number</label>
                                             <div class="input-group input-group-merge">
-                                                <span class="input-group-text">NEP (+977)</span>
-                                                <input type="text" name='phone_number' class="form-control" id="inputPassword4" placeholder="<?= $row["phone_number"] ?>">
+                                                <!-- <span class="input-group-text">NEP (+977)</span> -->
+                                                <input type="text" name='phone_number' class="form-control-plaintext" id="inputPassword4" value="NEP (+977) <?= $row["phone_number"] ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="role" class="form-label">Role</label>
-                                            <select id="role" name="role" class="select2 form-select">
-                                                <option value="Student">Student</option>
-                                                <option value="Alumni">Alumni</option>
-                                            </select>
+                                            <?php 
+                                            if ($row["role"] === 'Alumni') {
+                                            ?> <div class="input-group input-group-merge">
+                                                    <input type="text" name='role' class="form-control-plaintext" id="role" value=" <?= $row["role"] ?>" readonly>
+                                                </div>
+                                            <?php } else {
+                                            ?>
+                                                <select id="role" name="role" class="select2 form-select">
+                                                    <option value="Student">Student</option>
+                                                    <option value="Alumni">Alumni</option>
+                                                </select> <?php } ?>
                                         </div>
                                         <div class="mb-3 col-md-6">
-                                            <label for="inputPassword4" class="form-label" name="passout_year">Passout Year</label>
-                                            <input type="date" class="form-control">
+                                            <label for="Passout_year" class="form-label" name="passout_year">Passout Year</label>
+                                            <?php 
+                                            if ($row["role"] === 'Alumni') {
+                                            ?> <div class="input-group input-group-merge">
+                                                    <input type="text" name='role' class="form-control-plaintext" id="passout_year" value=" <?= $row["passout_year"] ?>" readonly>
+                                                </div>
+                                            <?php } else {
+                                            ?>
+                                            <input type="number" name="passout_year" class="form-control" placeholder="YYYY" min="1999" max="2023">
+                                            <script>
+                                                document.querySelector("input[type=number]")
+                                                    .oninput = e => console.log(new Date(e.target.valueAsNumber, 0, 1))
+                                            </script><?php } ?>
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="inputPassword4" class="form-label">Address</label>
-                                            <input type="text" class="form-control" name="adddress" placeholder=" Address">
+                                            <input type="text" class="form-control" name="adddress" placeholder=" Address" value="<?= $row["adddress"] ?>">
                                         </div>
                                         <div class="mb-3 col-md-6">
                                             <label for="inputPassword4" class="form-label">University</label>
@@ -157,11 +175,12 @@ if ($_POST){
                                             <label for="inputPassword4" class="form-label">Work(If any)</label>
                                             <input type="text" class="form-control" name="work" placeholder=" Work">
                                         </div>
-                                        <div class="col-12">
+
+                                        <div class="mb-3 col-12">
                                             <label for="inputAddress2" class="form-label">Social Media Contact</label>
                                             <input type="text" class="form-control" id="inputimage" name="scmedia1" placeholder="Add your Social Media Profile Link">
                                         </div>
-                                        <div class="col-12">
+                                        <div class="mb-3 col-12">
                                             <label for="inputAddress2" class="form-label">Social Media Contact</label>
                                             <input type="text" class="form-control" id="inputimage" name="scmedia2" placeholder="Add your Social Media Profile Link(Any Other)">
                                         </div>
@@ -179,8 +198,5 @@ if ($_POST){
 
 
 </main>
-
-
-
 
 <?php include('head/footer.php'); ?>
