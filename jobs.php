@@ -1,9 +1,12 @@
-<?php 
+<?php
 session_start();
-include 'head/header.php' ;
+include 'head/header.php';
 include 'config/db.php';
 $sql = "SELECT * FROM jobs ";
 $result = $conn->query($sql);
+$sql1 = "SELECT * FROM users where email='" . $_SESSION['email'] . " ' ";
+$result1 = $conn->query($sql1);
+$row1 = $result1->fetch_assoc();
 
 ?>
 
@@ -14,7 +17,8 @@ $result = $conn->query($sql);
   <div class="breadcrumbs">
     <div class="container">
       <h2>Jobs</h2>
-      <p>Alumni Management enhances job assurance by providing networking opportunities, job boards, mentorship, professional development, alumni events, and referral programs. </p>
+      <p>Alumni Management enhances job assurance by providing networking opportunities, job boards,
+        mentorship, professional development, alumni events and referral programs. </p>
     </div>
   </div><!-- End Breadcrumbs -->
 
@@ -24,36 +28,38 @@ $result = $conn->query($sql);
 
       <div class="row" data-aos="zoom-in" data-aos-delay="100">
 
-      <!-- <JOB ITEMS> -->
+        <!-- <JOB ITEMS> -->
 
-    <?php 
-    if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()){ ?>
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-          <div class="course-item">
-            <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
-            <div class="course-content">
-              <h3><a href="jobs-details.php"><?= $row["job_title"] ?></a></h3>
-              <p><?= $row["description"] ?></p>
-              <h6><em>Offered By :<?= $row["organization"] ?></em></h6>
-              <?php 
-                 if(!isset($_SESSION['is_login'])){?>
-                 
-                   <a href="login.php"><h4>View Details</h4></a>
-                <?php }
-                 else
-                 {?>   
-                   <a href="jobs-details.php"><h4>View Details</h4></a>
-                 <?php } ?>
-              </a>
+        <?php
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) { ?>
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+              <div class="course-item">
+                <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
+                <div class="course-content">
+                  <h3><a href="jobs-details.php"><?= $row["job_title"] ?></a></h3>
+                  <p><?= $row["description"] ?></p>
+                  <h6><em>Offered By :<?= $row["organization"] ?></em></h6>
+                  <?php
+                  if (!isset($_SESSION['is_login'])) { ?>
+
+                    <a href="login.php">
+                      <h4>View Details</h4>
+                    </a>
+                  <?php } else { ?>
+                    <a href="jobs-details.php">
+                      <h4>View Details</h4>
+                    </a>
+                  <?php } ?>
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div> 
-        <?php } 
+        <?php }
         }
         ?>
-        
-<!-- End Course Item-->
+
+        <!-- End Course Item-->
 
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
           <div class="course-item">
@@ -82,18 +88,25 @@ $result = $conn->query($sql);
           </div>
         </div> <!-- End Course Item-->
 
-        <?php 
-                 if(isset($_SESSION['is_login'])){?>
-                 <div class="col-lg-4 col-md-6 d-flex align-items-stretch text-center">
-          <div class="member">
-            <span id="boot-icon" class="bi bi-briefcase" style="font-size:5rem"></span>
-            <div class="member-content">
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Offer A Job</button>
+        <? $databse = $row["role"] ?>
+        <?php
+        if (isset($_SESSION['is_login'])) {
+        ?>
+          <?php
+          if ($row1["role"] === 'Alumni') {
+          ?>
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch text-center">
+              <div class="member">
+                <span id="boot-icon" class="bi bi-briefcase" style="font-size:5rem"></span>
+                <div class="member-content">
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Offer A Job</button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-                <?php }?>
-              
+        <?php }
+        }
+        ?>
+
       </div>
     </div>
   </section><!-- End Courses Section -->
@@ -109,8 +122,8 @@ $result = $conn->query($sql);
           <form class="row g-3">
             <div class="col-md-6">
               <form action="jobs.php" method="post">
-              <label for="inputEmail4" class="form-label">Job Title</label>
-              <input type="text" class="form-control" id="inputEmail4" placeholder="Job Title">
+                <label for="inputEmail4" class="form-label">Job Title</label>
+                <input type="text" class="form-control" id="inputEmail4" placeholder="Job Title">
             </div>
             <div class="col-md-6">
               <label for="inputPassword4" class="form-label">Organization</label>
@@ -137,15 +150,23 @@ $result = $conn->query($sql);
               <textarea class="form-control" rows="4" cols="50" placeholder="Description of Job"></textarea>
             </div>
             <div class="col-12">
+              <label for="inputAddress" class="form-label">Required Qualification</label>
+              <textarea class="form-control" rows="4" cols="50" placeholder="Required Quailfication"></textarea>
+            </div>
+            <div class="col-md-6">
               <label for="inputAddress2" class="form-label">Jobs Photo(Image Only)</label>
               <input type="file" class="form-control" id="inputimage" name="banner" accept="image/*">
+            </div>
+            <div class="col-md-6">
+              <label for="inputEmail4" class="form-label">Vacant Seats</label>
+              <input type="number" class="form-control" id="inputEmail4" placeholder="Vacant Seats" required>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+          </form>
         </div>
       </div>
     </div>
