@@ -1,9 +1,19 @@
+<<<<<<< HEAD
 <?php
 include('head/header.php');
 if (isset($_SESSION['is_login']) && $_SESSION == true) {
   header('Location:index.php');
 }
 $error_fname = $error_lname = $error_email = $error_pass = $error_rpass = $error_eyear = $error_pyear = $error_message = $error_message1 = '';
+=======
+
+<?php 
+include ('head/header.php');
+if(isset($_SESSION['is_login']) && $_SESSION == true){
+  header('Location:index.php');
+}
+$error_fname= $error_lname= $error_email= $error_pass= $error_rpass=$error_eyear=$error_pyear=$error_message=$error_message1='';
+>>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9
 
 function validate_form($data)
 {
@@ -57,12 +67,23 @@ if ($_POST) {
     if ($flag == 0) {
       $sql = "INSERT INTO users (firstname, lastname, email, phone_number,password,role,gender,enrollment_year,passout_year) 
                    VALUES ('$fname', '$lname', '$email', '$phone','$pass','$role','$gender','$eyear','$pyear')";
+<<<<<<< HEAD
       if ($conn->query($sql) === true) {
         $error_message1 = 'Successfully registered.';
         header('location:login.php');
       } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
       }
+=======
+                if ($conn->query($sql) === true) {
+                  $error_message1='Successfully registered.';
+                        header('location:login.php');
+                                        }
+                else{
+                               echo "Error: " . $sql . "<br>" . $conn->error;
+                     }
+                    }
+>>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9
     }
   }
 }
@@ -71,6 +92,7 @@ if ($_POST) {
 <head>
 
 
+<<<<<<< HEAD
   <link href="assets/css/loginpage.css" rel="stylesheet">
 </head>
 <main>
@@ -93,6 +115,22 @@ if ($_POST) {
               <i class="bx bx-user"></i>
               <span style="color: red;"><?php
                                         echo $error_fname; ?></span>
+=======
+<link href="assets/css/loginpage.css" rel="stylesheet">
+</head>
+<main>
+<div class="wrapper">
+<!----------------------------- Form box ----------------------------------->    
+    <div class="form-box">
+      <!------------------- registration form -------------------------->
+      <div class="register-container" id="register">
+          <div class="welcome"> Welcome to Alumni Management System</div>
+            <div class="top">
+                <span>Have an account? <a href="login.php"><u>Sign In</a></u></span>
+                <header style="padding: 0px;">Sign Up</header>
+                <span style="color: red;"><?php echo $error_message1; ?></span>
+                <span style="color: red;"><?php echo $error_message; ?></span>
+>>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9
             </div>
             <div class="input-box">
               <input type="text" name="lastname" class="input-field" placeholder="Lastname" required>
@@ -166,5 +204,10 @@ if ($_POST) {
       </div>
 
     </div>
+<<<<<<< HEAD
   </div>
 </main>
+=======
+</div>
+</main>
+>>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9

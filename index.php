@@ -1,9 +1,17 @@
 <?php include 'head/header.php';
+<<<<<<< HEAD
 
 include 'config/db.php';
 $sql = "SELECT * FROM jobs ";
 $result = $conn->query($sql);
 
+=======
+session_start();
+include 'config/db.php';
+$sql = "SELECT * FROM jobs ";
+$result = $conn->query($sql);
+
+>>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9
 ?>
 
   <!-- ======= Hero Section ======= -->

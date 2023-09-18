@@ -147,4 +147,8 @@ $row1 = $result1->fetch_assoc();
 
 </main><!-- End #main -->
 
+<<<<<<< HEAD
 <?php include('head/footer.php') ?>
+=======
+<?php include('head/footer.php') ?>
+>>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9
