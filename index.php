@@ -1,5 +1,10 @@
-<?php include 'head/header.php' ?>
+<?php include 'head/header.php';
 
+include 'config/db.php';
+$sql = "SELECT * FROM jobs ";
+$result = $conn->query($sql);
+
+?>
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex justify-content-center align-items-center">
@@ -92,22 +97,40 @@
         </div>
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="course-item">
-              <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
-              <div class="course-content">
-                        <h3><a href="jobs-details.php">Website Design</a></h3>
-                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <h6><em>Offered By : Organization Name</em></h6>
-                <a href="jobs-details.php"> <h4>View Details</h4></a>
-              </div>
+           <!-- <JOB ITEMS> -->
+
+           <?php 
+    if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()){ ?>
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+          <div class="course-item">
+            <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
+            <div class="course-content">
+              <h3><?= $row["job_title"] ?></h3>
+              <p><?= $row["description"] ?></p>
+              <h6><em>Offered By :<?= $row["organization"] ?></em></h6>
+              <?php 
+                 if(!isset($_SESSION['is_login'])){?>
+                   <a href="login.php"><h4>View Details</h4></a>
+                <?php }
+                 else
+                 {?>   
+                   <a href="jobs-details.php"><h4>View Details</h4></a>
+                 <?php } ?>
+              </a>
             </div>
-          </div> <!-- End Course Item-->
+          </div>
+        </div> 
+        <?php } 
+        }
+        ?>
+        
+<!-- End Course Item-->
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
             <div class="course-item">
               <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
               <div class="course-content">
-                        <h3><a href="jobs-details.php">Search Engine Optimization</a></h3>
+                        <h3>Search Engine Optimization</h3>
                 <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
                 <h6><em>Offered By : Organization Name</em></h6>
                 <a href="jobs-details.php"> <h4>View Details</h4></a>

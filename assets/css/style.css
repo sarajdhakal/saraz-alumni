@@ -478,9 +478,9 @@ section {
   color: #fff;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1068px) {
   .breadcrumbs {
-    margin-top: 63px;
+    margin-top: 60px;
   }
 }
 
