@@ -1,8 +1,6 @@
-<?php include 'head/header.php';
-include '../config/db.php';
-$sql = "SELECT * FROM users where role='Student'";
+<?php include('head/header.php');
+$sql = "SELECT * FROM student ";
 $result = $conn->query($sql);
-
 ?>
 <div class="page-wrapper">
     <div class="content container-fluid">
@@ -10,36 +8,11 @@ $result = $conn->query($sql);
             <div class="row">
                 <div class="col-sm-12">
                     <div class="page-sub-header">
-                        <h3 class="page-title">Students</h3>
+                        <h3 class="page-title">Student</h3>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="user.php">Students</a></li>
+                            <li class="breadcrumb-item"><a href="students.php">Student</a></li>
                             <li class="breadcrumb-item active">All Students</li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="student-group-form">
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search by ID ...">
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search by Name ...">
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search by Phone ...">
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="search-student-btn">
-                        <button type="btn" class="btn btn-primary">Search</button>
                     </div>
                 </div>
             </div>
@@ -52,20 +25,20 @@ $result = $conn->query($sql);
                         <div class="page-header">
                             <div class="row align-items-center">
                                 <div class="col">
-                                    <h3 class="page-title">Students</h3>
+                                    <h3 class="page-title">Student</h3>
                                 </div>
                                 <div class="col-auto text-end float-end ms-auto download-grp">
                                     <!-- <a href="user.php" class="btn btn-outline-gray me-2 active"><i
                                                     class="feather-list"></i></a>
                                             <a href="#" class="btn btn-outline-primary me-2"><i
                                                     class="fas fa-download"></i> Download</a> -->
-                                    <a href="add-user.php" class="btn btn-primary"><i class="fas fa-plus"></i> Add Student</a>
+                                    <a href="add-student.php" class="btn btn-primary"><i class="fas fa-plus"></i> Add Student</a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="table-responsive">
-                            <table class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
+                            <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
                                 <thead class="student-thread">
                                     <tr>
                                         <th>
@@ -73,68 +46,88 @@ $result = $conn->query($sql);
                                                 <input class="form-check-input" type="checkbox" value="something">
                                             </div>
                                         </th>
-                                        <th>User ID</th>
+                                        <th>Student ID</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Role</th>
                                         <th>Gender</th>
                                         <th>Phone Number</th>
                                         <th>Address</th>
-                                        <th>Enrollment Year</th>
-                                        <th>Passout Year</th>
-                                        <th>College</th>
+                                        <th>Batch</th>
                                         <th>University</th>
+                                        <th>College</th>
                                         <th>Faculty</th>
-                                        <th>Work</th>
-                                        <th>Social Media Contact1</th>
-                                        <th>Social Media Contact2</th>
+                                        <th>Contributions</th>
+                                        <th>Contributions</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <?php
-                                      if ($result->num_rows > 0) {
-                                         while ($row = $result->fetch_assoc()) { ?> 
-                                    <tr>
-                                        <td>
-                                            <div class="form-check check-tables">
-                                                <input class="form-check-input" type="checkbox" value="something">
-                                            </div>
-                                        </td>
-                                        <td><?= $row["user_id"] ?></td>
-                                        <td>
-                                            <h2 class="table-avatar">
-                                                <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="../upload_images/<?= $row["user_image"] ?>" alt="User Image"></a>
-                                                <a><?= $row["firstname"] ?> <?= $row["lastname"] ?></a>
-                                            </h2>
-                                        </td>
-                                        <td><?= $row["email"] ?></td>
-                                        <td><?= $row["role"] ?></td>
-                                        <td><?= $row["gender"] ?></td>
-                                        <td><?= $row["phone_number"] ?> </td>
-                                        <td><?= $row["adddress"] ?></td>
-                                        <td><?= $row["enrollment_year"] ?></td>
-                                        <td><?= $row["passout_year"] ?></td>
-                                        <td><?= $row["college"] ?></td>
-                                        <td><?= $row["university"] ?></td>
-                                        <td><?= $row["faculty"] ?></td>
-                                        <td><?= $row["work"] ?></td>
-                                        <td><?= $row["scmedia1"] ?></td>
-                                        <td><?= $row["scmedia2"] ?></td>
-
-
-                                        <td class="text-end">
-                                        <div class="actions ">
-                                                    <button type="button"  class="btn btn-primary m-1"><i class="bi bi-eye-fill"></i> View  </button>
-                                                    <button type="button"  class="btn btn-success m-1"><i class="fa fa-edit"></i> Edit  </button>
-                                                    <button type="button"  class="btn btn-danger m-1"><i class="bi bi-trash3"></i> Delete</button>
+                                    <?php
+                                    if ($result->num_rows > 0) {
+                                        while ($row = $result->fetch_assoc()) { ?>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check check-tables">
+                                                        <input class="form-check-input" type="checkbox" value="something">
                                                     </div>
-                                        </td>
-                                    </tr>
+                                                </td>
+                                                <td><?= $row["student_id"] ?></td>
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="../upload_images/<?= $row["student_image"] ?>" alt="User Image"></a>
+                                                        <a><?= $row["first_name"] ?> <?= $row["middle_name"] ?> <?= $row["last_name"] ?></a>
+                                                    </h2>
+                                                </td>
+                                                <td><?= $row["student_email"] ?></td>
+                                                <td><?= $row["role"] ?></td>
+                                                <td><?= $row["gender"] ?></td>
+                                                <td><?= $row["phone"] ?> </td>
+                                                <td><?= $row["address"] ?></td>
+                                                <td><?= $row["batch"] ?></td>
+                                                <td><?= $row["university"] ?></td>
+                                                <td><?= $row["college"] ?></td>
+                                                <td><?= $row["faculty"] ?></td>
+                                               
+                                                <td><?= $row["project1_name"] ?><br>
+                                                
+                                                    <textarea style="border: none; outline:none;" readonly rows="4" cols="50"> <?= $row["project1_description"] ?></textarea>
+                                                </td>
+                                                <td><?= $row["project2_name"] ?><br>
+                                                    <textarea style="border: none; outline:none;" readonly rows="4" cols="50"> <?= $row["project2_description"] ?></textarea>
+                                                </td>
+                                                <td class="text-center">
+                                                    <a href="edit-student.php?student_id=<?= $row['student_id'] ?>" class="btn btn-primary m-1" role="button"><i class="fa fa-eye"></i>View</a>
+                                                    <a href="edit-student.php?student_id=<?= $row['student_id'] ?>" role="button" class="btn btn-success m-1"><i class="fa fa-edit"></i> Edit </a>
+                                                    <form action="delete.php" method="post">
+                                                        <input type="hidden" name="student_id" id="" value="<?=$row['student_id']?>">
+                                                        <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal_<?= $row['student_id'] ?>"><i class="bi bi-trash3"></i> Delete </button>
+                                                        <div class="modal fade" id="exampleModal_<?= $row['student_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body text-start">
+                                                                        Are you sure you want to delete?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                        <button type="submit" name="delete_student" class="btn btn-danger">Delete</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+
+
+                                                </td>
+                                            </tr>
                                     <?php }
-                                      }
-                                      ?>
-                                            </tbody>
+                                    }
+                                    ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>

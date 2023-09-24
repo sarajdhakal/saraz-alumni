@@ -1,4 +1,23 @@
-<?php include 'head/header.php' ?>
+<?php include 'head/header.php';
+include 'config/db.php';
+function validate_form($data)
+{
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+if (!isset($_GET['alumni_id']) || empty($_GET['alumni_id'])) {
+  header('Location: alumni.php');
+  exit;
+}
+$alumni_id = validate_form($_GET['alumni_id']);
+$flag = 0;
+$sql = "SELECT * FROM alumni where alumni_id ='$alumni_id' ";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+
+?>
 
 <main id="main">
 
@@ -16,12 +35,12 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src="assets/img/2.png" alt="avatar"
+            <img src="upload_images/<?=$row['alumni_image']?>" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
-            <h5 class="my-3">Alumni Name</h5>
+            <h5 class="my-3"><?=$row['first_name']?> <?=$row['middle_name']?> <?=$row['last_name']?></h5>
             <p class="text-muted mb-1 small">Alumni</p>
-            <p class="text-muted mb-1">Full Stack Developer</p>
-            <p class="text-muted mb-4">Bharatpur-15,Chitwan</p>
+            <p class="text-muted mb-1"><?=$row['post']?></p>
+            <p class="text-muted mb-4"><?=$row['address']?></p>
                   </div>
         </div>
         <div class="list-group-item d-flex justify-content-between align-items-center p-3">
@@ -57,7 +76,7 @@
                 <p class="mb-0">Full Name</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Alumni Name</p>
+                <p class="text-muted mb-0"><?=$row['first_name']?> <?=$row['middle_name']?> <?=$row['last_name']?></p>
               </div>
             </div>
             <hr>
@@ -66,16 +85,7 @@
                 <p class="mb-0">Email</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">alumni-email@email.com</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">Phone</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">9876543210</p>
+                <p class="text-muted mb-0"><?=$row['alumni_email']?></p>
               </div>
             </div>
             <hr>
@@ -84,7 +94,7 @@
                 <p class="mb-0">Batch</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">2020</p>
+                <p class="text-muted mb-0"><?=$row['batch']?></p>
               </div>
             </div>
 
@@ -94,7 +104,7 @@
                 <p class="mb-0">University</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">University Name</p>
+                <p class="text-muted mb-0"><?=$row['university']?></p>
               </div>
             </div>
             <hr>
@@ -103,7 +113,7 @@
                 <p class="mb-0">College</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">College Name</p>
+                <p class="text-muted mb-0"><?=$row['college']?></p>
               </div>
             </div>
             <hr>
@@ -112,7 +122,7 @@
                 <p class="mb-0">Faculty</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Faculty Name</p>
+                <p class="text-muted mb-0"><?=$row['faculty']?></p>
               </div>
             </div>
             <hr>
@@ -121,7 +131,7 @@
                 <p class="mb-0">Address</p>
               </div>
               <div class="col-sm-9">
-                <p class="text-muted mb-0">Bharatpur-15, Chitwan</p>
+                <p class="text-muted mb-0"><?=$row['address']?></p>
               </div>
             </div>
           </div>

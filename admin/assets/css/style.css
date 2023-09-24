@@ -770,9 +770,6 @@ table.table td h2 span {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    justify-content: end;
-    -webkit-justify-content: end;
-    -ms-flex-pack: end
 }
 
 .actions a {

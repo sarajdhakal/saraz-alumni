@@ -2,14 +2,11 @@
 session_start();
 include 'head/header.php';
 include 'config/db.php';
-$sql = "SELECT * FROM jobs ";
+$todayDate = date("Y-m-d");
+$sql = "SELECT * FROM jobs WHERE due_date >= '$todayDate'";
 $result = $conn->query($sql);
-$sql1 = "SELECT * FROM users where email='" . $_SESSION['email'] . " ' ";
-$result1 = $conn->query($sql1);
-$row1 = $result1->fetch_assoc();
 
 ?>
-
 
 <main id="main" data-aos="fade-in">
 
@@ -32,22 +29,22 @@ $row1 = $result1->fetch_assoc();
 
         <?php
         if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) { ?>
+          while ($row = $result->fetch_assoc()) { 
+            ?>
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
               <div class="course-item">
                 <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
                 <div class="course-content">
-                  <h3><a href="jobs-details.php"><?= $row["job_title"] ?></a></h3>
+                  <h3><?= $row["job_title"] ?></h3>
                   <p><?= $row["description"] ?></p>
                   <h6><em>Offered By :<?= $row["organization"] ?></em></h6>
                   <?php
                   if (!isset($_SESSION['is_login'])) { ?>
-
                     <a href="login.php">
                       <h4>View Details</h4>
                     </a>
                   <?php } else { ?>
-                    <a href="jobs-details.php">
+                    <a href="jobs-details.php?id=<?=$row['job_id']?> " >
                       <h4>View Details</h4>
                     </a>
                   <?php } ?>
@@ -91,6 +88,10 @@ $row1 = $result1->fetch_assoc();
         <? $databse = $row["role"] ?>
         <?php
         if (isset($_SESSION['is_login'])) {
+
+          $sql1 = "SELECT * FROM users where email='" . $_SESSION['email'] . " ' ";
+          $result1 = $conn->query($sql1);
+          $row1 = $result1->fetch_assoc();
         ?>
           <?php
           if ($row1["role"] === 'Alumni') {
@@ -174,8 +175,4 @@ $row1 = $result1->fetch_assoc();
 
 </main><!-- End #main -->
 
-<<<<<<< HEAD
 <?php include('head/footer.php') ?>
-=======
-<?php include('head/footer.php') ?>
->>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9

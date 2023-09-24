@@ -1,20 +1,10 @@
-<<<<<<< HEAD
 <?php
 include('head/header.php');
 if (isset($_SESSION['is_login']) && $_SESSION == true) {
   header('Location:index.php');
 }
 $error_fname = $error_lname = $error_email = $error_pass = $error_rpass = $error_eyear = $error_pyear = $error_message = $error_message1 = '';
-=======
-
-<?php 
-include ('head/header.php');
-if(isset($_SESSION['is_login']) && $_SESSION == true){
-  header('Location:index.php');
-}
-$error_fname= $error_lname= $error_email= $error_pass= $error_rpass=$error_eyear=$error_pyear=$error_message=$error_message1='';
->>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9
-
+$flag = 0;
 function validate_form($data)
 {
   $data = trim($data);
@@ -37,19 +27,27 @@ if ($_POST) {
   include 'config/db.php';
   $sql = "SELECT * FROM users WHERE email='$email' ";
   $result = $conn->query($sql);
-  $flag = 0;
-  if ($result->num_rows > 0) {
+
+  $sql2="SELECT student_email from student WHERE student_email='$email' ";
+  $result2= $conn->query($sql2);
+  if ($result2->num_rows == 0){
+    $error_message1= "Your email address is not registered to college.";
+    $flag=1;
+  }
+  else if ($result->num_rows > 0) {
     // output data of each row
-    $error_message = "User already existed.";
-  } else {
+    $error_message1  = "User already existed.";
+    $flag = 1;
+  }   
+  else {
     if (strlen($fname) < 3) {
-      $error_fname = "First name > 2 letters.";
+      $error_message1  = "First name should have more than 2 letters.";
       $flag = 1;
     } else if (strlen($lname) < 3) {
-      $error_fname = "Last name > 2 letters.";
+      $error_message1  = "Last name  should have more than 2  letters.";
       $flag = 1;
     } else if ($pass != $rpass) {
-      $error_rpass = "Password not matched";
+      $error_message1 = "Password not matched";
       $flag = 1;
     } else if ($role == 'Alumni' && $pyear == '') {
       $error_message1 = 'Alumni must enter passout year.';
@@ -67,23 +65,12 @@ if ($_POST) {
     if ($flag == 0) {
       $sql = "INSERT INTO users (firstname, lastname, email, phone_number,password,role,gender,enrollment_year,passout_year) 
                    VALUES ('$fname', '$lname', '$email', '$phone','$pass','$role','$gender','$eyear','$pyear')";
-<<<<<<< HEAD
       if ($conn->query($sql) === true) {
+        $flag = 2;
         $error_message1 = 'Successfully registered.';
-        header('location:login.php');
       } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
       }
-=======
-                if ($conn->query($sql) === true) {
-                  $error_message1='Successfully registered.';
-                        header('location:login.php');
-                                        }
-                else{
-                               echo "Error: " . $sql . "<br>" . $conn->error;
-                     }
-                    }
->>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9
     }
   }
 }
@@ -92,7 +79,6 @@ if ($_POST) {
 <head>
 
 
-<<<<<<< HEAD
   <link href="assets/css/loginpage.css" rel="stylesheet">
 </head>
 <main>
@@ -104,38 +90,32 @@ if ($_POST) {
         <div class="welcome"> Welcome to Alumni Management System</div>
         <div class="top">
           <span>Have an account? <a href="login.php"><u>Sign In</a></u></span>
-          <header style="padding: 0px;">Sign Up</header>
-          <span style="color: red;"><?php echo $error_message1; ?></span>
-          <span style="color: red;"><?php echo $error_message; ?></span>
+          <header style="padding: 1px;">Sign Up</header>
         </div>
+        <?php
+        if ($flag == 2) {
+        ?>
+          <div class="alert alert-success p-1" role="alert">
+            <?php echo $error_message1; ?> Proceed to <a href="login.php" class="alert-link">Sign In</a>
+          </div>
+        <?php
+        } else if ($flag == 1) {
+        ?>
+          <div class="alert alert-danger p-1 text-danger" role="alert">
+            <?php echo $error_message1; ?>
+          </div>
+        <?php
+        }
+        ?>
         <form action="register.php" method="post">
           <div class="two-forms">
             <div class="input-box">
               <input type="text" name="firstname" class="input-field" placeholder="Firstname" required>
               <i class="bx bx-user"></i>
-              <span style="color: red;"><?php
-                                        echo $error_fname; ?></span>
-=======
-<link href="assets/css/loginpage.css" rel="stylesheet">
-</head>
-<main>
-<div class="wrapper">
-<!----------------------------- Form box ----------------------------------->    
-    <div class="form-box">
-      <!------------------- registration form -------------------------->
-      <div class="register-container" id="register">
-          <div class="welcome"> Welcome to Alumni Management System</div>
-            <div class="top">
-                <span>Have an account? <a href="login.php"><u>Sign In</a></u></span>
-                <header style="padding: 0px;">Sign Up</header>
-                <span style="color: red;"><?php echo $error_message1; ?></span>
-                <span style="color: red;"><?php echo $error_message; ?></span>
->>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9
             </div>
             <div class="input-box">
               <input type="text" name="lastname" class="input-field" placeholder="Lastname" required>
               <i class="bx bx-user"></i>
-              <span style="color: red;"><?php echo $error_lname; ?></span>
             </div>
           </div>
           <div class="two-forms">
@@ -156,7 +136,7 @@ if ($_POST) {
             <div class="input-box">
               <input type="password" name="rpassword" class="input-field" placeholder="Repeat Password" required>
               <i class="bx bx-lock-alt"></i>
-              <span style="color: red;"><?php echo $error_rpass; ?></span>
+
             </div>
           </div>
           <div class="two-forms">
@@ -204,10 +184,5 @@ if ($_POST) {
       </div>
 
     </div>
-<<<<<<< HEAD
   </div>
 </main>
-=======
-</div>
-</main>
->>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9

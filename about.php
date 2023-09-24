@@ -2,8 +2,6 @@
 include 'config/db.php';
 $sql = "SELECT * FROM testimonials ";
 $result = $conn->query($sql);
-
-
 ?>
 
 
@@ -58,37 +56,12 @@ $result = $conn->query($sql);
             <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
-<<<<<<< HEAD
                   <img src="upload_images/<?= $row["testimonials_image"] ?>" class="testimonial-img" alt="">
-=======
-                  <img src="assets/img/2.png" class="testimonial-img" alt="">
->>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9
                   <h3><?= $row["testimonials_name"] ?></h3>
                   <h4><?= $row["post"] ?></h4>
                   <p>
                     <i class="bx bxs-quote-alt-left quote-icon-left"></i>
                     <?= $row["description"] ?>
-<<<<<<< HEAD
-=======
-                    <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-  <?php  }
-  }
-        ?>  
-        <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                  <h3>Samar Bhattarai</h3>
-                  <h4>Founder</h4>
-                  <p>
-                    <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                    The AMS fundraising capabilities enabled our institution to raise significant funds for scholarships and research projects.
-                     It's an invaluable tool for engaging alumni in philanthropic initiatives and making a real impact.
->>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9
                     <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                   </p>
                 </div>
@@ -107,8 +80,4 @@ $result = $conn->query($sql);
 
   </main><!-- End #main -->
 
-<<<<<<< HEAD
   <?php include('head/footer.php') ?>
-=======
-  <?php include('head/footer.php') ?>
->>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9

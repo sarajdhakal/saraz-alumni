@@ -1,7 +1,16 @@
-<?php include 'head/header.php' ;
+<?php 
+include 'head/header.php' ;
 if (!isset($_SESSION['is_login']) && $_SESSION == false) {
-  header('Location:login.php ? redirect = jobs-details.php');
+  header('Location:login.php');
 }
+if($_GET['id']==''){
+ header('Location:jobs.php');
+}
+include ('config/db.php');
+$job_id= $_GET['id'];
+$sql = "SELECT * FROM jobs where job_id ='$job_id' ";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
 ?>
 
 
@@ -22,46 +31,42 @@ if (!isset($_SESSION['is_login']) && $_SESSION == false) {
         <div class="row">
           <div class="col-lg-8">
             <img src="assets/img/course-details.jpg" class="img-fluid" alt="">
-            <h3>Et enim incidunt fuga tempora</h3>
+            <h3><?= $row["job_title"] ?></h3>
             <p>
-              Qui et explicabo voluptatem et ab qui vero et voluptas. Sint voluptates temporibus quam autem. Atque nostrum voluptatum laudantium a doloremque enim et ut dicta. Nostrum ducimus est iure minima totam doloribus nisi ullam deserunt. Corporis aut officiis sit nihil est. Labore aut sapiente aperiam.
-              Qui voluptas qui vero ipsum ea voluptatem. Omnis et est. Voluptatem officia voluptatem adipisci et iusto provident doloremque consequatur. Quia et porro est. Et qui corrupti laudantium ipsa.
-              Eum quasi saepe aperiam qui delectus quaerat in. Vitae mollitia ipsa quam. Ipsa aut qui numquam eum iste est dolorum. Rem voluptas ut sit ut.
+            <?= $row["description"] ?>
             </p>
           </div>
           <div class="col-lg-4">
 
             <div class="course-info d-flex justify-content-between align-items-center">
               <h5>Provider</h5>
-              <p><a href="#">Saraz </a></p>
+              <p><a href="#"><?= $row["alumni_name"] ?> </a></p>
             </div>
 
             <div class="course-info d-flex justify-content-between align-items-center">
               <h5>Organization</h5>
-              <p>Organization Name</p>
+              <p><?= $row["organization"] ?></p>
             </div>
             <div class="course-info d-flex justify-content-between align-items-center">
               <h5>Type</h5>
-              <p>Job Type</p>
+              <p><?= $row["type"] ?></p>
             </div>
 
             <div class="course-info d-flex justify-content-between align-items-center">
               <h5>Vacant Seats</h5>
-              <p>1</p>
+              <p><?= $row["vacant_seats"] ?></p>
             </div>
 
             <div class="course-info d-flex justify-content-between align-items-center">
               <h5>Due Date to Apply</h5>
-              <p>Date</p>
+              <p><?= $row["due_date"] ?></p>
             </div>
 
           </div>
           <div class="col-lg-8">
             <h3>Required Qualification</h3>
             <p>
-              Qui et explicabo voluptatem et ab qui vero et voluptas. Sint voluptates temporibus quam autem. Atque nostrum voluptatum laudantium a doloremque enim et ut dicta. Nostrum ducimus est iure minima totam doloribus nisi ullam deserunt. Corporis aut officiis sit nihil est. Labore aut sapiente aperiam.
-              Qui voluptas qui vero ipsum ea voluptatem. Omnis et est. Voluptatem officia voluptatem adipisci et iusto provident doloremque consequatur. Quia et porro est. Et qui corrupti laudantium ipsa.
-              Eum quasi saepe aperiam qui delectus quaerat in. Vitae mollitia ipsa quam. Ipsa aut qui numquam eum iste est dolorum. Rem voluptas ut sit ut.
+            <?= $row["qualification"] ?>
             </p>
           </div>
         </div>

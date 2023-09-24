@@ -1,238 +1,266 @@
 <?php
 session_start();
-
-if(!isset($_SESSION['is_login']) && $_SESSION == false){
-     header('Location:login.php');
+if (!isset($_SESSION['is_login']) || $_SESSION == false) {
+  header('Location:login.php');
 }
 include 'head/header.php';
 include 'config/db.php';
+$num_per_page = 16;
+if (isset($_GET["page"])) {
+  $page = $_GET["page"];
+} else {
+  $page = 1;
+}
+$start_from = ($page - 1) * 16;
+$sql = "select * from alumni limit $start_from, $num_per_page";
+$result = $conn->query($sql);
 ?>
 
 <head>
   <link href="assets/css/alumni.css" rel="stylesheet">
-  
+
 </head>
-  <main id="main" data-aos="fade-in">
+<main id="main" data-aos="fade-in">
 
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
-      <div class="container">
-        <h2>Alumni</h2>
-        <p> </p>
-      </div>
-    </div><!-- End Breadcrumbs -->
-
-    <div id="filter-options">
-      <label for="university-select">University:</label>
-      <select id="university-select" class="input-field">
-        <option value="all" selected class="input-fields">All</option>
-        <option value="pokhara" class="input-fields"> Pokhara University</option>
-        <option value="tu" class="input-fields">University</option>
-      </select>
-      
-      <label for="school-select">College:</label>
-      <select id="school-select" class="input-field">
-        <option value="all" selected class="input-fields">All</option>
-        <option value="utc" class="input-fields">Utc </option>
-        <option value="tuc" class="input-fields">TUC</option>
-      </select>
-      
-      <label for="faculty-select">Faculty:</label>
-      <select id="faculty-select" class="input-fields">
-        <option value="all" selected class="input-fields">All</option>
-        <option value="computer" class="input-fields">Computer </option>
-        <option value="civil" class="input-fields">civil</option>
-        <option value="elec" class="input-fields">electrical</option>
-      </select>
+  <!-- ======= Breadcrumbs ======= -->
+  <div class="breadcrumbs">
+    <div class="container">
+      <h2>Alumni</h2>
+      <p> </p>
     </div>
+  </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Alumni Section ======= -->
-    <section id="trainers" class="trainers">
-      <div class="container" data-aos="fade-up">
+  <div id="filter-options">
+    <label for="university-select">University:</label>
+    <select id="university-select" class="form-control form-control-lg">
+      <option value="all" selected class="input-fields">All</option>
+      <option value="pokhara" class="input-fields"> Pokhara University</option>
+      <!-- <option value="<?= $row['university'] ?>" class="input-fields">University</option> -->
+    </select>
 
-        <div class="row" data-aos="zoom-in" data-aos-delay="100">
-          <!-- <div id="filterable-div"> -->
-          <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch"> -->
-          <div class="item pokhara utc computer col-lg-4 col-md-6">
-                    <div class="member">
-                      <img src="assets/img/2.png" class="img-fluid" alt="">
-                      <div class="member-content">
-                        <h4>Alumni Name</h4>
-                        <span>Batch : Year</span>
-                        <p>
-                          Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
-                        </p>
-                        <a href="alumni-details.php" ><h4> View Details</h4></a>
-                      </div>
-                    </div>
-                  </div>
-            <!-- </div> -->
+    <label for="school-select" >College:</label>
+    <select id="school-select"class="form-control">
+      <option value="all" selected class="input-fields">All</option>
+      <option value="utc" class="input-fields">United Technical College </option>
+      <!-- <option value="tuc" class="input-fields">TUC</option> -->
+    </select>
 
+    <label for="faculty-select">Faculty:</label>
+    <select id="faculty-select" class="form-control form-control-lg">
+      <option value="all" selected class="input-fields">All</option>
+      <option value="computer" class="input-fields">BE Computer </option>
+      <option value="civil" class="input-fields">BE Civil</option>
+      <option value="electrical" class="input-fields">BE Electrical and Electronics</option>
+    </select>
+  </div>
+  <div style="display: flex; justify-content: center; align-items: center;">
+  <input class="form-control" id="myInput" type="text" placeholder="Search Alumni .." style="width: 300px;">
+</div>
+
+
+  <!-- ======= Alumni Section ======= -->
+  <section id="trainers" class="trainers">
+    <div class="container" data-aos="fade-up">
+
+      <div class="row" data-aos="zoom-in" data-aos-delay="100">
+        <!-- <div id="filterable-div"> -->
         <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch"> -->
-        <div class="item pokhara utc computer col-lg-4 col-md-6">
-                    <div class="member">
-                      <img src="assets/img/2.png" class="img-fluid" alt="">
-                      <div class="member-content">
-                        <h4>Alumni Name</h4>
-                        <span>Batch : 2020</span>
-                        <p>
-                          Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
-                        </p>
-                        <a href="alumni-details.php" ><h4> View Details</h4></a>
-                      </div>
-                    </div>
-                  </div>
-            <!-- </div> -->
+        <?php
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) { 
+            if(($row['faculty'])=="BE Computer" ){
+              $computer="computer";
+            }
+            else if(($row['faculty'])=="BE Civil" ){
+              $computer="civil";
+            }
+           else if (($row['faculty'])=="BE Electrical and Electronics" ){
+              $computer="electrical" ;
+            }
+            ?>
+            <div class="item pokhara utc <?=$computer?> col-lg-4 col-md-6">
+              <div class="member">
+                <img src="upload_images./<?= $row['alumni_image'] ?>" class="img-fluid " style="height:250px; width:250px" alt="<?= $row['alumni_image'] ?>">
+                <div class="member-content">
+                  <h4><?= $row['first_name'] ?> <?= $row['middle_name'] ?> <?= $row['last_name'] ?></h4>
+                  <span>Batch : <?= $row['batch'] ?></span>
+                  <p>
+                    Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+                  </p>
+                  <a href="alumni-details.php?alumni_id=<?=$row['alumni_id']?>">
+                    <h4> View Details</h4>
+                  </a>
+                </div>
+              </div>
+            </div>
+        <?php }
+        } else {
+          echo "No records found.";
+        }
+        ?>
 
-           <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch"> -->
-           <div class="item pokhara utc civil col-lg-4 col-md-6">
-                    <div class="member">
-                      <img src="assets/img/2.png" class="img-fluid" alt="">
-                      <div class="member-content">
-                        <h4>Alumni Name</h4>
-                        <span>Batch :   Year</span>
-                        <p>
-                          Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
-                        </p>
-                       <a href="alumni-details.php" ><h4> View Details</h4></a>
-                      </div>
-                    </div>
-                  </div>
 
-                  <div class="item tu tuc elec col-lg-4 col-md-6">
-                    <div class="member">
-                      <img src="assets/img/2.png" class="img-fluid" alt="">
-                      <div class="member-content">
-                        <h4>Alumni Name</h4>
-                        <span>Batch : 2020</span>
-                        <p>
-                          Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
-                        </p>
-                        <a href="alumni-details.php" ><h4> View Details</h4></a>
-                      </div>
-                    </div>
-                  </div>
 
-                  
-            <!-- </div> -->
-            <!-- </div> -->
-            <!-- <div class="item tu tuc computer">tuc 1</div>
+
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- <div class="item tu tuc computer">tuc 1</div>
             <div class="item tu tuc civil">tuc2 </div>
             <div class="item pokhara utc elec">utc 3</div>
             <div class="item tu tuc elec">tuc3</div> -->
-            
-            <!-- Add more faculties under each school as needed -->
-          
-          <!-- </div>filterable-div -->
 
+        <!-- Add more faculties under each school as needed -->
+
+        <!-- </div>filterable-div -->
+      </div>
+    </div>
+    <div class="text-center">
+      <ul class="justify-content-center list-inline">
+        <?php
+        $sql = "SELECT * FROM alumni";
+        $result = $conn->query($sql);
+        $total_records = mysqli_num_rows($result);
+        $total_pages = ceil($total_records / $num_per_page);
+        for ($i = 1; $i <= $total_pages; $i++) {
+        ?>
+          <li class="page-item list-inline-item">
+            <a class="page-link" href='alumni.php?page=<?= $i ?>' style="background-color: 	 #7879FF; color: white; padding: 5px 10px; border-radius: 5px;"><?= $i ?></a>
+          </li>
+        <?php } ?>
+      </ul>
+    </div>
+
+
+  </section><!-- End Trainers Section -->
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+
+  <div class="footer-top">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+          <h3>Alumni Management System</h3>
+          <p> Bharatpur- Chitwan <br><br>
+            <strong>Phone:</strong>#<br>
+            <strong>Email:</strong> hellohi@gmail.com<br>
+          </p>
         </div>
 
-      </div>
-    </section><!-- End Trainers Section -->
-
-  </main><!-- End #main -->
-
-   <!-- ======= Footer ======= -->
-   <footer id="footer">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>Alumni Management System</h3>
-            <p> Bharatpur- Chitwan <br><br>
-              <strong>Phone:</strong>#<br>
-              <strong>Email:</strong> hellohi@gmail.com<br>
-            </p>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="events.php">Events</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
+        <div class="col-lg-2 col-md-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="events.php">Events</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="container d-md-flex py-4">
+  </div>
+  <div class="container d-md-flex py-4">
 
-      <div class="me-md-auto text-center text-md-start">
-        <div class="copyright">
-          &copy; Copyright <strong><span>Saraz</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-          <!-- All the links in the footer should remain intact. -->
-          <!-- You can delete the links only if you purchased the pro version. -->
-          <!-- Licensing information: https://bootstrapmade.com/license/ -->
-          <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
-          Designed by <a href="#">Saraz Coorporation</a>
-        </div>
+    <div class="me-md-auto text-center text-md-start">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Saraz</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
+        Designed by <a href="#">Saraz Coorporation</a>
       </div>
     </div>
-  </footer><!-- End Footer -->
+  </div>
+</footer><!-- End Footer -->
 
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 
-  <script>
-    // Get the necessary elements
-    const universitySelect = document.getElementById('university-select');
-    const schoolSelect = document.getElementById('school-select');
-    const facultySelect = document.getElementById('faculty-select');
-    const items = document.getElementsByClassName('item');
-  
-    // Attach event listener to university select
-    universitySelect.addEventListener('change', filterItems);
-    
-    // Attach event listener to school select
-    schoolSelect.addEventListener('change', filterItems);
-  
-    // Attach event listener to faculty select
-    facultySelect.addEventListener('change', filterItems);
-  
-    // Function to filter items based on selected options
-    function filterItems() {
-      const selectedUniversity = universitySelect.value;
-      const selectedSchool = schoolSelect.value;
-      const selectedFaculty = facultySelect.value;
-    
-      // Loop through items and show/hide based on selected options
-      for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        const university = item.classList.contains(selectedUniversity) || selectedUniversity === 'all';
-        const school = item.classList.contains(selectedSchool) || selectedSchool === 'all';
-        const faculty = item.classList.contains(selectedFaculty) || selectedFaculty === 'all';
-    
-        if (university && school && faculty) {
-          item.classList.add('show');
-        } else {
-          item.classList.remove('show');
-        }
-      }
-    }
-  
-    // Display all items initially
+<script>
+  // Get the necessary elements
+  const universitySelect = document.getElementById('university-select');
+  const schoolSelect = document.getElementById('school-select');
+  const facultySelect = document.getElementById('faculty-select');
+  const items = document.getElementsByClassName('item');
+
+  // Attach event listener to university select
+  universitySelect.addEventListener('change', filterItems);
+
+  // Attach event listener to school select
+  schoolSelect.addEventListener('change', filterItems);
+
+  // Attach event listener to faculty select
+  facultySelect.addEventListener('change', filterItems);
+
+  // Function to filter items based on selected options
+  function filterItems() {
+    const selectedUniversity = universitySelect.value;
+    const selectedSchool = schoolSelect.value;
+    const selectedFaculty = facultySelect.value;
+
+    // Loop through items and show/hide based on selected options
     for (let i = 0; i < items.length; i++) {
       const item = items[i];
-      item.classList.add('show');
-    }
-  </script>
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+      const university = item.classList.contains(selectedUniversity) || selectedUniversity === 'all';
+      const school = item.classList.contains(selectedSchool) || selectedSchool === 'all';
+      const faculty = item.classList.contains(selectedFaculty) || selectedFaculty === 'all';
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+      if (university && school && faculty) {
+        item.classList.add('show');
+      } else {
+        item.classList.remove('show');
+      }
+    }
+  }
+
+  // Display all items initially
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    item.classList.add('show');
+  }
+</script>
+<script>
+  // Get the search input field
+  const searchInput = document.getElementById('myInput');
+
+  // Get all alumni items
+  const alumniItems = document.querySelectorAll('.item');
+
+  // Attach an event listener to the search input
+  searchInput.addEventListener('input', filterAlumni);
+
+  function filterAlumni() {
+    const searchTerm = searchInput.value.toLowerCase();
+
+    alumniItems.forEach(item => {
+      const alumniName = item.querySelector('h4').textContent.toLowerCase();
+
+      if (alumniName.includes(searchTerm)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js"></script>
 
 </body>
 

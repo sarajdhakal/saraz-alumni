@@ -1,5 +1,6 @@
-<?php include 'head/header.php';
-include '../config/db.php';
+<?php
+
+include 'head/header.php';
 $sql = "SELECT * FROM testimonials";
 $result = $conn->query($sql);
 ?>
@@ -38,11 +39,10 @@ $result = $conn->query($sql);
                                 </div>
                             </div>
                         </div>
-
                         <div class="table-responsive">
-                            <table class="table border-0 star-student table-hover table-center mb-0 datatable table-striped">
+                            <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
                                 <thead class="student-thread">
-                                    <tr>
+                                <tr>
                                         <th>
                                             <div class="form-check check-tables">
                                                 <input class="form-check-input" type="checkbox" value="something">
@@ -52,7 +52,7 @@ $result = $conn->query($sql);
                                         <th>Name</th>
                                         <th>Post</th>
                                         <th>Description</th>
-                                        <th class="text-end">Action</th>
+                                        <th >Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -73,19 +73,33 @@ $result = $conn->query($sql);
                                                     </h2>
                                                 </td>
                                                 <td><?= $row["post"] ?></td>
-                                                <td><?= $row["description"] ?></td>
-                                                <td class="text-end">
-                                                    <div class="actions ">
-                                                        <form action="edit-testimonials.php" method="post">
-                                                            <input type="hidden" name="testimonials_id" value="<?= $row["testimonials_id"] ?>">
-                                                            <button type="submit" name="edit" class="btn btn-primary m-1"><i class="fa fa-eye"></i> View </button>
-                                                            <button type="submit" name="edit" class="btn btn-success m-1"><i class="fa fa-edit"></i> Edit </button>
-                                                        </form>
+                                                <td><textarea style="border: none; outline:none;" readonly rows="4" cols="50"> <?= $row["description"] ?></textarea> </td>
+                                                <td class="text-center">
+                                                   
+                                                    <a href="edit-testimonial.php?testimonials_id=<?= $row['testimonials_id'] ?>" class="btn btn-primary m-1" role="button"><i class="fa fa-eye"></i>View</a>
+                                                    <a href="edit-testimonial.php?testimonials_id=<?= $row["testimonials_id"] ?>" role="button" class="btn btn-success m-1"><i class="fa fa-edit"></i> Edit </a>
                                                         <form action="delete.php" method="post">
-                                                            <input type="hidden" name="testimonials_id" value="<?= $row["testimonials_id"] ?>">
-                                                            <button type="submit" name="delete" class="btn btn-primary m-1"><i class="bi bi-trash3"></i> Delete </button>
+                                                        <input type="hidden" name="user_id" value="<?= $row["testimonials_id"] ?>">
+                                                        <button type="button" name="delete_user" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal_<?= $row['testimonials_id'] ?>"><i class="bi bi-trash3"></i> Delete </button>
+                                                            <div class="modal fade" id="exampleModal_<?= $row['testimonials_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Are you sure you want to delete?                                                                           
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                            <button type="submit" name="delete_testimonials" class="btn btn-danger">Delete</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </form>
-                                                    </div>
+                                                  
                         </div>
                         </td>
                         </tr>

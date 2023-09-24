@@ -1,13 +1,26 @@
 *{  
     font-family: 'Poppins', sans-serif;
 }
-body{
+body {
+    position: relative; /* Make sure the body is a positioned container */
     background: url("bg.jpg");
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-attachment: fixed;
     overflow: hidden;
 }
+
+body::before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.75); /* Change the 0.5 to the desired opacity value (0.0 to 1.0) */
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1; /* Place the pseudo-element behind the content */
+}
+
 .wrapper{
     display: flex;
     justify-content: center;
@@ -23,7 +36,8 @@ body{
     height: 650px;
     overflow: hidden;
     z-index: 2;
-    background-color: #704F4F;
+    border-radius: 2rem; 
+    background-color: #213f9a00;
     opacity: 90%;
     border-radius: 30px;
 }

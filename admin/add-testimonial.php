@@ -1,5 +1,4 @@
 <?php include 'head/header.php';
-include '../config/db.php';
 $error_message1 = '';
 function validate_form($data)
 {

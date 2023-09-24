@@ -2,13 +2,11 @@
 session_start();
 include 'head/header.php';
 include 'config/db.php';
-$sql = "SELECT * FROM events ";
-$result = $conn->query($sql);
-$sql1 = "SELECT * FROM users where email='" . $_SESSION['email'] . " ' ";
-$result1 = $conn->query($sql1);
-$row1 = $result1->fetch_assoc();
-?>
 
+$todayDate = date("Y-m-d");
+$sql = "SELECT * FROM events WHERE date_and_time >= '$todayDate'";
+$result = $conn->query($sql);
+?>
 <main id="main">
 
   <!-- ======= Breadcrumbs ======= -->
@@ -24,28 +22,37 @@ $row1 = $result1->fetch_assoc();
     <div class="container" data-aos="fade-up">
 
       <div class="row">
+      <?php
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) { 
+            ?>
         <div class="col-md-6 d-flex align-items-stretch">
           <div class="card">
             <div class="card-img">
               <img src="assets/img/events-1.jpg" alt="...">
             </div>
             <div class="card-body">
-              <h5 class="card-title"><a href="events-details.php">Introduction to webdesign</a></h5>
-              <p class="fst-italic text-center">Sunday, September 26th at 7:00 pm</p>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+              <h5 class="card-title text-danger"><?=$row['event_title']?></h5>
+              <p class="fst-italic text-center"><?=$row['date_and_time']?></p>
+              <p class="card-text"><?=$row['description']?></p>
               <?php
               if (!isset($_SESSION['is_login'])) { ?>
                 <a href="login.php">
                   <h4>View Details</h4>
                 </a>
               <?php } else { ?>
-                <a href="events-details.php">
+                <a href="events-details.php?id=<?=$row['event_id']?> " >
                   <h4>View Details</h4>
                 </a>
               <?php } ?>
             </div>
           </div>
         </div>
+        <?php }
+        }
+        ?>
+
+
         <div class="col-md-6 d-flex align-items-stretch">
           <div class="card">
             <div class="card-img">
@@ -70,7 +77,13 @@ $row1 = $result1->fetch_assoc();
         </div>
 
         <?php
-        if (isset($_SESSION['is_login'])) { ?>
+        if (isset($_SESSION['is_login'])) {
+
+          $sql1 = "SELECT * FROM users where email='" . $_SESSION['email'] . " ' ";
+          $result1 = $conn->query($sql1);
+          $row1 = $result1->fetch_assoc();
+
+        ?>
           <?php
           if ($row1["role"] === 'Alumni') {
           ?>
@@ -121,11 +134,11 @@ $row1 = $result1->fetch_assoc();
             </div>
             <div class="col-md-6">
               <label for="inputPassword4" class="form-label">Date and Time</label>
-              <input type="datetime-local" class="form-control" id="inputPassword4" placeholder="Organizer?" required>
+              <input type="datetime-local" class="form-control" id="inputPassword4" required>
             </div>
             <div class="col-12">
               <label for="inputAddress" class="form-label">Description</label>
-              <textarea class="form-control" rows="4" cols="50" placeholder="Description of Event" required></textarea>
+              <textarea class="form-control" rows="4" cols="50" name="description" placeholder="Description of Event" required></textarea>
             </div>
             <div class="col-12">
               <label for="inputAddress" class="form-label">How to join Event?</label>
@@ -147,8 +160,4 @@ $row1 = $result1->fetch_assoc();
 
 </main><!-- End #main -->
 
-<<<<<<< HEAD
 <?php include('head/footer.php') ?>
-=======
-<?php include('head/footer.php') ?>
->>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9

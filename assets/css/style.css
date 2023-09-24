@@ -26,7 +26,7 @@ a:hover {
   right: 15px;
   bottom: 15px;
   z-index: 996;
-  background: #5fcf80;
+  background: #173280;
   width: 40px;
   height: 40px;
   border-radius: 50px;
@@ -40,7 +40,7 @@ a:hover {
 }
 
 .back-to-top:hover {
-  background: #7ed899;
+  background-color: #173280;
   color: #fff;
 }
 
@@ -100,7 +100,7 @@ a:hover {
 # Header
 --------------------------------------------------------------*/
 #header {
-  background: #1b1b1b;
+  background:#ffffff;
   transition: all 0.5s;
   z-index: 997;
   padding: 15px 0;
@@ -117,7 +117,7 @@ a:hover {
 }
 
 #header .logo a {
-  color: #ffffff;
+  color: #173280;
 }
 
 #header .logo img {
@@ -161,7 +161,7 @@ a:hover {
   padding: 10px 0 10px 30px;
   font-size: 18px;
   font-weight: 500;
-  color: #ffffff;
+  color: #173280;
   white-space: nowrap;
   transition: 0.3s;
 }
@@ -177,7 +177,8 @@ a:hover {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #5fcf80;
+  color:#DC3233;
+  font-weight: bolder;
 }
 
 .navbar .dropdown ul {
@@ -363,14 +364,14 @@ a:hover {
 #hero {
   width: 100%;
   height: 80vh;
-  background: url("../img/hero-bg.jpg") top center;
+  background: url("bg.png") top center;
   background-size: cover;
   position: relative;
 }
 
 #hero:before {
   content: "";
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.7);
   position: absolute;
   bottom: 0;
   top: 0;
@@ -473,7 +474,8 @@ section {
 .breadcrumbs {
   margin-top: 73px;
   text-align: center;
-  background: #8539dc;
+  background-color:#213f9a;
+  ;
   padding: 30px 0;
   color: #fff;
 }
@@ -544,7 +546,7 @@ section {
 --------------------------------------------------------------*/
 .why-us .content {
   padding: 30px;
-  background: #3f3636;
+  background: #810d18fa;
   border-radius: 4px;
   color: #fff;
 }
@@ -561,7 +563,7 @@ section {
 
 .why-us .content .more-btn {
   display: inline-block;
-  background: rgba(255, 255, 255, 0.2);
+  background:#e10707c4;
   padding: 6px 30px 8px 30px;
   color: #fff;
   border-radius: 50px;
@@ -631,7 +633,7 @@ section {
 }
 
 .courses .course-content h3 a:hover {
-  color: #5fcf80;
+  color: #d80af8;
 }
 
 .courses .course-content p {
@@ -643,7 +645,7 @@ section {
   width: 100%;
   text-align: center;
   font-size: 14px;
-  background: #5fcf80;
+  background:  #173280;
   padding: 7px 14px;
   color: #fff;
   margin: 0;
@@ -888,7 +890,7 @@ section {
   border: 0;
   padding: 12px 15px 12px 0;
   transition: 0.3s;
-  color: #37423b;
+  color: darkred;
   border-radius: 0;
   border-right: 2px solid #e2e7e4;
   font-weight: 600;

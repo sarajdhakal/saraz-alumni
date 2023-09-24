@@ -1,17 +1,12 @@
 <?php include 'head/header.php';
-<<<<<<< HEAD
-
 include 'config/db.php';
-$sql = "SELECT * FROM jobs ";
+$todayDate = date("Y-m-d");
+$sql = "SELECT * FROM jobs WHERE due_date >= '$todayDate' LIMIT 4";
 $result = $conn->query($sql);
+$sql1 = "SELECT * FROM events WHERE date_and_time >= '$todayDate' LIMIT 2";
 
-=======
-session_start();
-include 'config/db.php';
-$sql = "SELECT * FROM jobs ";
-$result = $conn->query($sql);
+$result1 = $conn->query($sql1);
 
->>>>>>> 8004df7c459c85877af7ab62734407b76bd21ca9
 ?>
 
   <!-- ======= Hero Section ======= -->
@@ -29,7 +24,7 @@ $result = $conn->query($sql);
       <div class="container">
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2"  data-aos-delay="100">
-            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+            <img src="assets/css/about.png" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
             <h3>Empowering alumni, inspiring success.</h3>
@@ -47,6 +42,7 @@ $result = $conn->query($sql);
       </div>
     </section><!-- End About Section -->
     <!-- ======= Why Us Section ======= -->
+    
     <section id="why-us" class="why-us">
       <div class="container" data-aos="fade-up">
         <div class="row">
@@ -114,52 +110,39 @@ $result = $conn->query($sql);
           <div class="course-item">
             <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
             <div class="course-content">
-              <h3><?= $row["job_title"] ?></h3>
+              <h3 class="text-danger"><?= $row["job_title"] ?></h3>
               <p><?= $row["description"] ?></p>
               <h6><em>Offered By :<?= $row["organization"] ?></em></h6>
-              <?php 
-                 if(!isset($_SESSION['is_login'])){?>
-                   <a href="login.php"><h4>View Details</h4></a>
-                <?php }
-                 else
-                 {?>   
-                   <a href="jobs-details.php"><h4>View Details</h4></a>
-                 <?php } ?>
-              </a>
+              <?php
+                  if (!isset($_SESSION['is_login'])) { ?>
+                    <a href="login.php">
+                      <h4>View Details</h4>
+                    </a>
+                  <?php } else { ?>
+                    <a href="jobs-details.php?id=<?=$row['job_id']?> " >
+                      <h4>View Details</h4>
+                    </a>
+                  <?php } ?>
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        </div> 
-        <?php } 
+        <?php }
         }
         ?>
         
-<!-- End Course Item-->
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
-            <div class="course-item">
-              <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
-              <div class="course-content">
-                        <h3>Search Engine Optimization</h3>
-                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <h6><em>Offered By : Organization Name</em></h6>
-                <a href="jobs-details.php"> <h4>View Details</h4></a>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-            <div class="course-item">
-              <img src="assets/img/course-3.jpg" class="img-fluid" alt="...">
-              <div class="course-content">
-                             <h3><a href="jobs-details.php">Copywriting</a></h3>
-                <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-                <h6><em>Offered By : Organization Name</em></h6>
-                <a href="jobs-details.php"> <h4>View Details</h4></a>
-              </div>
-            </div>
-          </div> <!-- End Course Item-->
-        </div>
+<!-- End Jobs Item-->
 
-      </div>
-    </section><!-- End Popular Courses Section -->
+          </div> <!-- End Jobs Item-->
+        </div>
+        <?php
+                  if (isset($_SESSION['is_login'])) { ?>
+        <div class="d-flex justify-content-center align-items-center m-2">
+        <a class="btn btn-primary" href="jobs.php" role="button">View All Jobs...</a>
+    </div>
+
+    <?php } ?>
+    </section><!-- End Jobs Section -->
 
 
 
@@ -174,37 +157,48 @@ $result = $conn->query($sql);
       <div class="container" data-aos="fade-up">
 
         <div class="row">
-          <div class="col-md-6 d-flex align-items-stretch">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/events-1.jpg" alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><a href="events-details.php">Introduction to webdesign</a></h5>
-                <p class="fst-italic text-center">Sunday, September 26th at 7:00 pm</p>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-                <a href="events-details.php"> <h4>View Details</h4></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 d-flex align-items-stretch">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/events-2.jpg" alt="...">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><a href="events-details.php">Marketing Strategies</a></h5>
-                <p class="fst-italic text-center">Sunday, November 15th at 7:00 pm</p>
-                <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
-                <a href="events-details.php"> <h4>View Details</h4></a>
-                </div>
-            </div>
-          </div>
 
+        <?php
+        if ($result1->num_rows > 0) {
+          while ($row1 = $result1->fetch_assoc()) { 
+            ?>
+        <div class="col-md-6 d-flex align-items-stretch">
+          <div class="card">
+            <div class="card-img">
+              <img src="assets/img/events-1.jpg" alt="...">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title text-danger"><?=$row1['event_title']?></h5>
+              <p class="fst-italic text-center"><?=$row1['date_and_time']?></p>
+              <p class="card-text"><?=$row1['description']?></p>
+              <?php
+              if (!isset($_SESSION['is_login'])) { ?>
+                <a href="login.php">
+                  <h4>View Details</h4>
+                </a>
+              <?php } else { ?>
+                <a href="events-details.php?id=<?=$row1['event_id']?> " >
+                  <h4>View Details</h4>
+                </a>
+              <?php } ?>
+            </div>
+          </div>
+        </div>
+        <?php }
+        }
+        ?>
          
         </div>
 
       </div>
+      <?php
+                  if (isset($_SESSION['is_login'])) { ?>
+        <div class="d-flex justify-content-center align-items-center m-2">
+        <a class="btn btn-primary" href="events.php" role="button">View All Events...</a>
+    </div>
+
+    <?php } ?>
+
     </section><!-- End Events Section -->
       </div>
     </section><!-- End Popular Courses Section -->

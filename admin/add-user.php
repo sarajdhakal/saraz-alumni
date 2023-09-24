@@ -1,7 +1,5 @@
 <?php
 include 'head/header.php';
-include '../config/db.php';
-
 $error_fname = $error_lname = $error_email = $error_pass = $error_rpass = $error_eyear = $error_pyear = $error_message = $error_message1 = '';
 function validate_form($data)
 {
@@ -34,7 +32,7 @@ if ($_POST) {
     $flag = 0;
     if ($result->num_rows > 0) {
         // output data of each row
-        $error_message = "User already existed.";
+        $error_message1 = "User already existed.";
     } else {
         if (strlen($fname) < 3) {
             $error_message1 = "First name > 2 letters.";
