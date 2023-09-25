@@ -15,6 +15,7 @@ if ($_POST) {
     $organizer = validate_form($_POST['organizer']);
     $organizer_email = validate_form($_POST['organizer_email']);
     $type = validate_form($_POST['type']);
+    $venue= validate_form($_POST['venue']);
     $date_and_time = validate_form($_POST['date_and_time']);
     $description = validate_form($_POST['description']);
     $join_event = validate_form($_POST['join_event']);

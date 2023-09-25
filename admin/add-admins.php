@@ -1,5 +1,10 @@
 <?php
 include 'head/header.php';
+$sql1 = "SELECT * FROM admin where admin_email='" . $_SESSION['admin_email'] . " ' ";
+$admin_email = $_SESSION['admin_email'];
+$result1 = $conn->query($sql1);
+$row1 = $result1->fetch_assoc();
+
 $error_fname = $error_lname = $error_email = $error_pass = $error_rpass = $error_eyear = $error_pyear = $error_message = $error_message1 = '';
 function validate_form($data)
 {
@@ -8,6 +13,7 @@ function validate_form($data)
     $data = htmlspecialchars($data);
     return $data;
 }
+$flag = 0;
 if ($_POST) {
     $fname = validate_form($_POST['firstname']);
     $lname = validate_form($_POST['lastname']);
@@ -16,9 +22,12 @@ if ($_POST) {
     $pass = validate_form($_POST['password']);
     $rpass = validate_form($_POST['rpassword']);
     $role = validate_form($_POST['role']);
+    $admin_image = $_FILES['admin_image']['name'];
+    if ($admin_image === '') {
+        $admin_image = "2.png";
+    }
     $sql = "SELECT * FROM admin WHERE admin_email='$admin_email' ";
     $result = $conn->query($sql);
-    $flag = 0;
     if ($result->num_rows > 0) {
         // output data of each row
         $error_message1 = "Admin already existed.";
@@ -35,9 +44,11 @@ if ($_POST) {
         }
         $pass = password_hash($pass, PASSWORD_DEFAULT);
         if ($flag == 0) {
-            $sql = "INSERT INTO admin (firstname, lastname,password, admin_email, phone_number,role) 
-                   VALUES ('$fname', '$lname', '$pass', '$admin_email','$phone','$role' )";
+            $sql = "INSERT INTO admin (firstname, lastname,password, admin_email, phone_number,role,admin_image) 
+                   VALUES ('$fname', '$lname', '$pass', '$admin_email','$phone','$role','$admin_image' )";
             if ($conn->query($sql) === true) {
+                move_uploaded_file($_FILES['admin_image']['tmp_name'], "../upload_images/$admin_image");
+                $flag = 2;
                 $error_message1 = 'Successfully registered.';
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
@@ -74,7 +85,22 @@ if ($_POST) {
                                 <div class="col-12">
                                     <h5 class="form-title student-info">Admin Information</h5>
                                 </div>
-                                <p class="font-weight-normal " style=" color:red;"><?php echo $error_message1; ?></p>
+                                <?php
+                                if ($flag == 2) {
+                                ?>
+                                    <div class="alert alert-success " role="alert">
+                                        <?php echo $error_message1; ?>
+                                    </div>
+                                <?php
+                                } else if ($flag == 1) {
+                                ?>
+                                    <div class="alert alert-danger p-1 text-danger" role="alert">
+                                        <?php echo $error_message1; ?>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                                <p class="font-weight-normal " style=" color:red;"></p>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
                                         <label>First Name <span class="login-danger">*</span></label>
@@ -118,9 +144,17 @@ if ($_POST) {
                                         <label>Role <span class="login-danger">*</span></label>
                                         <select class="form-control select" name="role">
                                             <option value="Admin">Admin</option>
-                                            <option value="Super Admin">Super Admin</option>
+                                            <?php if (($row1["role"]) == "Super Admin") { ?>
+                                                <option value="Super Admin">Super Admin</option>
+                                            <?php } ?>
                                         </select>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="form-group students-up-files">
+                                <label>Upload Admin Image</label>
+                                <div class="upload">
+                                    <input class="form-control" type="file" id="formFile" name="admin_image" accept="image/png, image/jpeg">
                                 </div>
                             </div>
                             <div class="col-12 text-center">

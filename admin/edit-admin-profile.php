@@ -67,7 +67,7 @@ if (isset($_POST['update'])) {
             <div class="col-lg-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
-                        <img src="../upload_images/testimonials-1.jpg" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+                        <img src="../upload_images/<?=$row['admin_image']?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                         <h5 class="my-3"><?= $row['firstname'] ?> <?= $row['lastname'] ?></h5>
                         <p class="text-muted mb-1 small"><?= $row['role'] ?></p>
 

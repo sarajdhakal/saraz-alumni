@@ -60,7 +60,7 @@ if($_GET['id']==''){
         <div class="col-lg-8">
           <h3> Are you willing to join the event?</h3>
           <p>
-          <?=$row['join']?>
+          <?=$row['join_event']?>
           </p>
         </div>
 

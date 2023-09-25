@@ -9,7 +9,7 @@ $row5 = $result5->fetch_assoc();
 $sql1 = "SELECT COUNT(*) As users FROM testimonials";
 $result1 = $conn->query($sql1);
 $row1 = $result1->fetch_assoc();
-$sql2 = "SELECT COUNT(*) As students FROM users where role='Student' ";
+$sql2 = "SELECT COUNT(*) As students FROM student";
 $result2 = $conn->query($sql2);
 $row2 = $result2->fetch_assoc();
 $sql3 = "SELECT COUNT(*) As events FROM events ";
@@ -48,7 +48,7 @@ $row7 = $result7->fetch_assoc();
                                 <h3><?= $row['users'] ?></h3>
                             </div>
                             <div class="db-icon">
-                                <img src="assets/img/icons/dash-icon-01.svg" alt="Dashboard Icon">
+                                <img src="assets/img/icons/user.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@ $row7 = $result7->fetch_assoc();
                                 <h3><?= $row5['admins'] ?></h3>
                             </div>
                             <div class="db-icon">
-                                <i class="fas fa-user"></i>
+                                <img src="assets/img/icons/admin.png" alt="Dashboard Icon" style="width: 50px; height: 50px;">
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ $row7 = $result7->fetch_assoc();
                                 <h3><?= $row2['students'] ?></h3>
                             </div>
                             <div class="db-icon">
-                                <img src="assets/img/icons/dash-icon-01.svg" alt="Dashboard Icon">
+                                <img src="assets/img/icons/student.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@ $row7 = $result7->fetch_assoc();
                                 <h3><?= $row6['alumni'] ?></h3>
                             </div>
                             <div class="db-icon">
-                                <i class="fas fa-graduation-cap"></i>
+                                <img src="assets/img/icons/alumni.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@ $row7 = $result7->fetch_assoc();
                                 <h3><?= $row3['events'] ?></h3>
                             </div>
                             <div class="db-icon">
-                                <i class="fas fa-calendar-day"></i>
+                                <img src="assets/img/icons/calendar.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">
                             </div>
                         </div>
                     </div>
@@ -123,7 +123,7 @@ $row7 = $result7->fetch_assoc();
                                 <h3><?= $row4['jobs'] ?></h3>
                             </div>
                             <div class="db-icon">
-                                <i class="fas fa-briefcase"></i>
+                                <img src="assets/img/icons/briefcase.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">
                             </div>
                         </div>
                     </div>
@@ -139,7 +139,7 @@ $row7 = $result7->fetch_assoc();
                                 <h3><?= $row1['users'] ?></h3>
                             </div>
                             <div class="db-icon">
-                                <i class="fas fa-graduation-cap"></i>
+                                <img src="assets/img/icons/testimonial.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">
                             </div>
                         </div>
                     </div>

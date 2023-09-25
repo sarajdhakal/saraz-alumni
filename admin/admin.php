@@ -5,7 +5,12 @@ include 'head/header.php';
 $sql = "SELECT * FROM admin";
 $result = $conn->query($sql);
 
+$sql1 = "SELECT * FROM admin where admin_email='" . $_SESSION['admin_email'] . " ' ";
+$admin_email = $_SESSION['admin_email'];
+$result1 = $conn->query($sql1);
+$row1 = $result1->fetch_assoc();
 ?>
+
 <div class="page-wrapper">
     <div class="content container-fluid">
 
@@ -85,11 +90,14 @@ $result = $conn->query($sql);
 
 
 
-                                                <td>
+                                                <td class="text-center">
                                                   
                                                 <a href="edit-admins.php?admin_id=<?= $row['admin_id'] ?>" class="btn btn-primary m-1" role="button"><i class="fa fa-eye"></i>View</a>
                                                     <a href="edit-admins.php?admin_id=<?= $row['admin_id'] ?>" role="button" class="btn btn-success m-1"><i class="fa fa-edit"></i> Edit </a>
-                                                        <?php if (($row["role"]) != "Super Admin") { ?>
+                                                    
+                                                    <?php if (($row1["role"]) == "Super Admin") { ?>
+                                                    
+                                                    <?php if (($row["role"]) != "Super Admin") { ?>
                                                             <form action="delete.php" method="post">
                                                         <input type="hidden" name="admin_id" value="<?= $row["admin_id"] ?>">
                                                         <button type="button" name="delete_user" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal_<?= $row['admin_id'] ?>"><i class="bi bi-trash3"></i> Delete </button>
@@ -111,8 +119,11 @@ $result = $conn->query($sql);
                                                                 </div>
                                                             </div>
                                                         </form>
-                                                        <?php } ?>
+                                                        <?php }
+                                                        } ?>
                                                     
+
+
                                                 </td>
                                             </tr>
                                     <?php }

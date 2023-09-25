@@ -430,8 +430,8 @@ a:hover {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 20px 0;
   overflow: hidden;
+  padding: 15px;
 }
 
 .section-bg {
@@ -495,6 +495,7 @@ section {
   font-size: 18px;
   margin-bottom: 0;
 }
+
 
 /*--------------------------------------------------------------
 # About
@@ -645,7 +646,7 @@ section {
   width: 100%;
   text-align: center;
   font-size: 14px;
-  background:  #173280;
+  background: #2256eb;
   padding: 7px 14px;
   color: #fff;
   margin: 0;
@@ -1089,17 +1090,17 @@ section {
 }
 
 .events .card:hover .card-body {
-  border-color: #5fcf80;
+  border-color: #DC3233
 }
 
 .events .card:hover .card-body .card-title a {
-  color: #5fcf80;
+  color: darkred;
 }
 .events h4{
   width: 100%;
   text-align: center;
   font-size: 14px;
-  background: #5fcf80;
+  background:#2256eb;
   padding: 7px 14px;
   color: #fff;
   margin: 0;

@@ -6,6 +6,43 @@ $todayDate = date("Y-m-d");
 $sql = "SELECT * FROM jobs WHERE due_date >= '$todayDate'";
 $result = $conn->query($sql);
 
+$error_message1 = '';
+$flag = 0;
+function validate_form($data)
+{
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+if ($_POST) {
+  $job_title = validate_form($_POST['job_title']);
+  $organization = validate_form($_POST['organization']);
+  $alumni_name = validate_form($_POST['alumni_name']);
+  $alumni_email = validate_form($_POST['alumni_email']);
+  $vacant_seats = validate_form($_POST['vacant_seats']);
+  $type = validate_form($_POST['type']);
+  $due_date = validate_form($_POST['due_date']);
+  $description = validate_form($_POST['description']);
+  $qualification = validate_form($_POST['qualification']);
+  $banner_image = $_FILES['banner_image']['name'];
+  move_uploaded_file($_FILES['banner_image']['tmp_name'], "upload_images/$banner_image");
+  if ($banner_image === '') {
+    $banner_image ="2.png";
+  }
+  if ($flag == 0) {
+    $sql1 = "INSERT INTO jobs (job_title, organization,alumni_name,alumni_email,type,vacant_seats,due_date, description,qualification,banner_image) 
+         VALUES ('$job_title','$organization','$alumni_name','$alumni_email','$type','$vacant_seats','$due_date','$description', '$qualification','$banner_image')";
+    if ($conn->query($sql1) === true) {
+      $flag = 2;
+      $error_message1 = 'Successfully added job.';
+    } else {
+      echo "Error: " . $sql1 . "<br>" . $conn->error;
+    }
+  }
+}
+
 ?>
 
 <main id="main" data-aos="fade-in">
@@ -19,6 +56,22 @@ $result = $conn->query($sql);
     </div>
   </div><!-- End Breadcrumbs -->
 
+
+  <?php
+  if ($flag == 2) {
+  ?>
+    <div class="alert alert-success " role="alert">
+      <?php echo $error_message1; ?>
+    </div>
+  <?php
+  } else if ($flag == 1) {
+  ?>
+    <div class="alert alert-danger p-1 text-danger" role="alert">
+      <?php echo $error_message1; ?>
+    </div>
+  <?php
+  }
+  ?>
   <!-- ======= Courses Section ======= -->
   <section id="courses" class="courses">
     <div class="container" data-aos="fade-up">
@@ -29,8 +82,8 @@ $result = $conn->query($sql);
 
         <?php
         if ($result->num_rows > 0) {
-          while ($row = $result->fetch_assoc()) { 
-            ?>
+          while ($row = $result->fetch_assoc()) {
+        ?>
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
               <div class="course-item">
                 <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
@@ -44,7 +97,7 @@ $result = $conn->query($sql);
                       <h4>View Details</h4>
                     </a>
                   <?php } else { ?>
-                    <a href="jobs-details.php?id=<?=$row['job_id']?> " >
+                    <a href="jobs-details.php?id=<?= $row['job_id'] ?> ">
                       <h4>View Details</h4>
                     </a>
                   <?php } ?>
@@ -58,7 +111,7 @@ $result = $conn->query($sql);
 
         <!-- End Course Item-->
 
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+        <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
           <div class="course-item">
             <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
             <div class="course-content">
@@ -70,7 +123,7 @@ $result = $conn->query($sql);
               </a>
             </div>
           </div>
-        </div> <!-- End Course Item-->
+        </div> End Course Item -->
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
           <div class="course-item">
             <img src="assets/img/course-3.jpg" class="img-fluid" alt="...">
@@ -120,52 +173,51 @@ $result = $conn->query($sql);
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form class="row g-3">
+          <form  action="jobs.php" method="post" enctype="multipart/form-data" class="row g-3">
             <div class="col-md-6">
-              <form action="jobs.php" method="post">
+              
                 <label for="inputEmail4" class="form-label">Job Title</label>
-                <input type="text" class="form-control" id="inputEmail4" placeholder="Job Title">
+                <input type="text" class="form-control" id="inputEmail4" name="job_title" placeholder="Job Title" required>
             </div>
             <div class="col-md-6">
               <label for="inputPassword4" class="form-label">Organization</label>
-              <input type="text" class="form-control" id="inputPassword4" placeholder="Organization" required>
+              <input type="text" class="form-control" id="inputPassword4" name="organization" placeholder="Organization" required>
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Alumni Name</label>
-              <input type="text" class="form-control" id="inputEmail4" placeholder="Alumni Name" required>
+              <input type="text" class="form-control" id="inputEmail4" name="alumni_name"  placeholder="Alumni Name" required>
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Alumni Email</label>
-              <input type="email" class="form-control" id="inputEmail4" placeholder="Alumni Email" required>
+              <input type="email" class="form-control" id="inputEmail4" name="alumni_email" value="<?=  $_SESSION['email']  ?>" placeholder="Alumni Email" required>
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Type</label>
-              <input type="text" class="form-control" id="inputEmail4" placeholder="Eg: Sales And Marketing" required>
+              <input type="text" class="form-control" id="inputEmail4" name="type" placeholder="Eg: Sales And Marketing" required>
             </div>
             <div class="col-md-6">
               <label for="inputPassword4" class="form-label">Due Date to Apply</label>
-              <input type="date" class="form-control" id="inputPassword4" required>
+              <input type="date" class="form-control" id="inputPassword4" name="due_date" required>
             </div>
             <div class="col-12">
               <label for="inputAddress" class="form-label">Description</label>
-              <textarea class="form-control" rows="4" cols="50" placeholder="Description of Job"></textarea>
+              <textarea class="form-control" rows="4" cols="50" name="description" placeholder="Description of Job"></textarea>
             </div>
             <div class="col-12">
               <label for="inputAddress" class="form-label">Required Qualification</label>
-              <textarea class="form-control" rows="4" cols="50" placeholder="Required Quailfication"></textarea>
+              <textarea class="form-control" rows="4" cols="50" name="qualification" placeholder="Required Quailfication"></textarea>
             </div>
             <div class="col-md-6">
               <label for="inputAddress2" class="form-label">Jobs Photo(Image Only)</label>
-              <input type="file" class="form-control" id="inputimage" name="banner" accept="image/*">
+              <input type="file" class="form-control" id="inputimage" name="banner_image" accept="image/*">
             </div>
             <div class="col-md-6">
               <label for="inputEmail4" class="form-label">Vacant Seats</label>
-              <input type="number" class="form-control" id="inputEmail4" placeholder="Vacant Seats" required>
+              <input type="number" class="form-control" id="inputEmail4" name="vacant_seats" placeholder="Vacant Seats" required>
             </div>
-          </form>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Submit</button>
           </form>
         </div>

@@ -94,19 +94,17 @@ if (isset($_POST['add_testimonials'])) {
                 ?>
                 <img src="../upload_images/<?= $row["testimonials_image"] ?>" alt="User Image" class="rounded-circle img-fluid" style="width: 150px;">
                 <div class="col-12 col-sm-4">
-                  <div class="form-group students-up-files">
-                    <label>Edit Testimonial Photo</label>
-                    <div class="uplod">
-
-                      <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                        <span class="d-none d-sm-block">Upload new photo</span>
-                        <i class="bx bx-upload d-block d-sm-none"></i>
-                        <input type="file" id="upload" name="testimonials_image" class="account-file-input" hidden accept="image/png, image/jpeg" />
-                      </label>
-                      <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
-                    </div>
-                  </div>
-                </div>
+                                
+                                    <div class="form-group students-up-files">
+                                    <div class="form-group students-up-files">
+                                    <label>Upload New Image</label>
+                                    <div class="upload">
+                                        <input class="form-control" type="file" id="formFile" name="testimonials_image" accept="image/png, image/jpeg">
+                                    </div>
+                                </div>
+                                    </div>
+                                
+                                </div>
                 <p class="font-weight-normal " style=" color:red;"></p>
 
                 <div class="col-12 col-sm-4">

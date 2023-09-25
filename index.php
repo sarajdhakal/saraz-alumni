@@ -64,7 +64,7 @@ $result1 = $conn->query($sql1);
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-receipt"></i>
-                    <h4>Events</h4>
+                    <a href="events.php"> <h4 style="color: #DC3233;">Events</h4></a>
                     <p> Organizing events becomes seamless. 
                       Enables institutions to efficiently plan and execute reunions, networking events, career fairs, and more, keeping alumni engaged and connected.</p>
                   </div>
@@ -72,14 +72,14 @@ $result1 = $conn->query($sql1);
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-briefcase-alt"></i>
-                    <h4>Job Opportunities</h4>
+                    <a href="jobs.php"> <h4  style="color: #DC3233;">Job Opportunities</h4></a>
                     <p>Unlock a world of job opportunities for alumni, providing a platform that facilitates seamless networking, career support, and access to exclusive job postings.</p>
                   </div>
                 </div>
                 <div class="col-xl-4 d-flex align-items-stretch">
                   <div class="icon-box mt-4 mt-xl-0">
                     <i class="bx bx-images"></i>
-                    <h4>Alumni Gatherings</h4>
+                    <h4  style="color: #DC3233;">Alumni Gatherings</h4>
                     <p>The planning and coordination of memorable alumni gatherings, fostering meaningful connections and unforgettable experiences.</p>
                   </div>
                 </div>

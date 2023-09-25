@@ -210,6 +210,7 @@ if (isset($_POST['add_student'])) {
                                     <div class="form-group local-forms">
                                         <label>Faculty <span class="login-danger">*</span></label>
                                         <select class="form-control select" name="faculty">
+                                        <option><?= $row['faculty'] ?></option>
                                             <option>BE Computer</option>
                                             <option>BE Civil</option>
                                             <option>BE Electrical & Electronics</option>
@@ -220,7 +221,7 @@ if (isset($_POST['add_student'])) {
                                     <div class="form-group local-forms">
                                         <label>Project Name
                                         </label>
-                                        <input type="text" class="form-control" name="project1_name" value="<? $row['project1_name'] ?>" placeholder="Enter Your 1st Project Name" />
+                                        <input type="text" class="form-control" name="project1_name" value="<?= $row['project1_name'] ?>" placeholder="Enter Your 1st Project Name" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">

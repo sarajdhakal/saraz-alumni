@@ -100,7 +100,7 @@ include 'head/header.php';
                                                 <td><?= $row["work"] ?></td>
                                                 <td><?= $row["scmedia1"] ?></td>
                                                 <td><?= $row["scmedia2"] ?></td>
-                                                <td>
+                                                <td class="text-center">
                                                   
                                                     <a href="edit-user.php?user_id=<?= $row['user_id'] ?>" class="btn btn-primary m-1" role="button"><i class="fa fa-eye"></i>View</a>
                                                     <a href="edit-user.php?user_id=<?= $row["user_id"] ?>" role="button" class="btn btn-success m-1"><i class="fa fa-edit"></i> Edit </a>

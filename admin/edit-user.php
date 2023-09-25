@@ -25,7 +25,7 @@ if (isset($_POST['add_user'])) {
     $phone_number = validate_form($_POST['phone_number']);
     $role = validate_form($_POST['role']);
     $gender = validate_form($_POST['gender']);
-    $enrollment_year= validate_form($_POST['enrollment_year']);
+    $enrollment_year = validate_form($_POST['enrollment_year']);
     $pyear = validate_form($_POST['passout_year']);
     $address = validate_form($_POST['adddress']);
     $college = validate_form($_POST['college']);
@@ -45,19 +45,19 @@ if (isset($_POST['add_user'])) {
         $error_message1  = "Last name  should have more than 2  letters.";
         $flag = 1;
     } else if ($role == 'Alumni' && $pyear == '') {
-        $flag =1;
+        $flag = 1;
         $error_message1 = 'Alumni must enter passout year.';
     } else if ($role == 'Alumni' && $pyear != '') {
         if (($pyear - $enrollment_year) < 4) {
-            $flag=1;
+            $flag = 1;
             $error_message1 = 'Invalid passout year.';
         }
     } else if ($role == 'Student' && $pyear > 0) {
-        $flag=1;
+        $flag = 1;
         $error_message1 = 'Student cannot have passout year.';
     }
-    
-    if($flag==0){
+
+    if ($flag == 0) {
         $sql = "UPDATE users SET
         firstname= '$firstname',
         lastname='$lastname',
@@ -77,7 +77,7 @@ if (isset($_POST['add_user'])) {
           scmedia2 = '$scmedia2' 
         WHERE user_id ='$user_id' ";
         $result = mysqli_query($conn, $sql);
-        $flag=2;
+        $flag = 2;
         if ($result) {
             move_uploaded_file($_FILES['user_image']['tmp_name'], "../upload_images/$user_image");
             $error_message1 = 'Successfully updated.';
@@ -114,7 +114,7 @@ if (isset($_POST['add_user'])) {
             <div class="col-sm-12">
                 <div class="card comman-shadow">
                     <div class="card-body">
-                        <form action="edit-users.php?user_id=<?=$row['user_id']?>" method="post" enctype="multipart/form-data">
+                        <form action="edit-users.php?user_id=<?= $row['user_id'] ?>" method="post" enctype="multipart/form-data">
                             <div class="row">
 
                                 <div class="col-12">
@@ -137,18 +137,16 @@ if (isset($_POST['add_user'])) {
                                 ?>
                                 <img src="../upload_images/<?= $row["user_image"] ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                 <div class="col-12 col-sm-4">
-                                    <div class="form-group students-up-files">
-                                        <label>Edit User Photo</label>
-                                        <div class="uplod">
 
-                                            <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                                                <span class="d-none d-sm-block">Upload new photo</span>
-                                                <i class="bx bx-upload d-block d-sm-none"></i>
-                                                <input type="file" id="upload" name="user_image" class="account-file-input" hidden accept="image/png, image/jpeg" />
-                                            </label>
-                                            <p class="text-muted mb-0">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                                    <div class="form-group students-up-files">
+                                        <div class="form-group students-up-files">
+                                            <label>Upload New Image</label>
+                                            <div class="upload">
+                                                <input class="form-control" type="file" id="formFile" name="user_image" accept="image/png, image/jpeg">
+                                            </div>
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <p></p>

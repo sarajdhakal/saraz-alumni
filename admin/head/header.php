@@ -100,10 +100,10 @@ ini_set('display_errors', 1);
                             <span>Main Menu</span>
                         </li> -->
                         <li <?php if (strpos($_SERVER['PHP_SELF'], 'admin-index.php')) echo 'class="active"'; ?>>
-                            <a href="admin-index.php"><i class="feather-grid"></i><span><strong>Admin Dashboard </strong></span></a>
+                            <a href="admin-index.php"><i class="feather-grid"></i><span>Admin Dashboard </span></a>
                         </li>
                         <li class="submenu  <?php if ((strpos($_SERVER['PHP_SELF'], 'users.php')) || (strpos($_SERVER['PHP_SELF'], 'add-user.php')) || (strpos($_SERVER['PHP_SELF'], 'edit-user.php'))) echo 'active'; ?>">
-                            <a href="#"><i><img class="img-fluid" src="assets/img/icons/dash-icon-01.svg" alt="Icon"> </i><span> Users</span> <span class="menu-arrow "></span></a>
+                            <a href="#"><i><img class="img-fluid" src="assets/img/icons/user.svg" alt="Icon"></i> </i><span> Users</span> <span class="menu-arrow "></span></a>
                             <ul>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'users.php')) echo 'class="active"'; ?> href="users.php">User List</a></li>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'add-user.php')) echo 'class="active"'; ?> href="add-user.php">User Add</a></li>
@@ -113,7 +113,7 @@ ini_set('display_errors', 1);
                             </ul>
                         </li>
                         <li class="submenu <?php if ((strpos($_SERVER['PHP_SELF'], 'students.php')) || (strpos($_SERVER['PHP_SELF'], 'edit-student.php'))) echo 'active'; ?>"> 
-                            <a href="#"><i class="fa fa-user-graduate"></i> <span> Students</span> <span class="menu-arrow"></span></a>
+                            <a href="#"><i><img class="img-fluid" src="assets/img/icons/student.svg" alt="Icon"></i> <span> Students</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'students.php')) echo 'class="active"'; ?> href="students.php">Student List</a></li>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'add-student.php')) echo 'class="active"'; ?> href="add-student.php">Add Student </a></li>
@@ -124,7 +124,7 @@ ini_set('display_errors', 1);
                             </ul>
                         </li> 
                         <li class="submenu  <?php if ((strpos($_SERVER['PHP_SELF'], 'alumni.php')) || (strpos($_SERVER['PHP_SELF'], 'add-alumnis.php')) || (strpos($_SERVER['PHP_SELF'], 'edit-alumnis.php'))) echo 'active'; ?>">
-                            <a href="#"><i class="fas fa-graduation-cap"></i> <span> Alumni</span> <span class="menu-arrow"></span></a>
+                            <a href="#"><i><img class="img-fluid" src="assets/img/icons/alumni.svg" alt="Icon"></i></i> <span> Alumni</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'alumni.php')) echo 'class="active"'; ?> href="alumni.php">Alumni List</a></li>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'add-alumnis.php')) echo 'class="active"'; ?> href="add-alumnis.php">Add Alumni</a></li>
@@ -135,7 +135,7 @@ ini_set('display_errors', 1);
                         </li>
                       
                         <li class="submenu  <?php if ((strpos($_SERVER['PHP_SELF'], 'admin.php')) || (strpos($_SERVER['PHP_SELF'], 'add-admins.php')) || (strpos($_SERVER['PHP_SELF'], 'edit-admins.php'))) echo 'active'; ?>">
-                            <a href="#"><i class="fas fa-shield-alt"></i> <span> Admin</span> <span class="menu-arrow"></span></a>
+                            <a href="#"><i><img class="img-fluid" src="assets/img/icons/admin.png" alt="Icon"></i> <span> Admin</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'admin.php')) echo 'class="active"'; ?> href="admin.php">Admin List</a></li>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'add-admins.php')) echo 'class="active"'; ?> href="add-admins.php">Add Admin </a></li>
@@ -146,7 +146,7 @@ ini_set('display_errors', 1);
                         </li>
 
                         <li class="submenu  <?php if ((strpos($_SERVER['PHP_SELF'], 'testimonials.php')) || (strpos($_SERVER['PHP_SELF'], 'add-testimonial.php')) || (strpos($_SERVER['PHP_SELF'], 'edit-testimonial.php'))) echo 'active'; ?>">
-                            <a href="#"><i class="fas fa-graduation-cap"></i> <span> Testimonials</span> <span class="menu-arrow"></span></a>
+                            <a href="#"><i><img class="img-fluid" src="assets/img/icons/testimonial.svg" alt="Icon"></i> <span> Testimonials</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'testimonials.php')) echo 'class="active"'; ?> href="testimonials.php">Testimonials List</a></li>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'add-testimonial.php')) echo 'class="active"'; ?> href="add-testimonial.php">Add Testimonials </a></li>
@@ -156,7 +156,7 @@ ini_set('display_errors', 1);
                             </ul>
                         </li>
                         <li class="submenu  <?php if ((strpos($_SERVER['PHP_SELF'], 'events.php')) || (strpos($_SERVER['PHP_SELF'], 'add-event.php')) || (strpos($_SERVER['PHP_SELF'], 'edit-event.php'))) echo 'active'; ?>">
-                            <a href="#"><i class="fas fa-calendar-day"></i> <span> Events</span> <span class="menu-arrow"></span></a>
+                            <a href="#"><i><img class="img-fluid" src="assets/img/icons/calendar.svg" alt="Icon"></i> <span> Events</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'events.php')) echo 'class="active"'; ?> href="events.php">Events List</a></li>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'add-event.php')) echo 'class="active"'; ?> href="add-event.php"> Add Events</a></li>
@@ -166,7 +166,7 @@ ini_set('display_errors', 1);
                             </ul>
                         </li>
                         <li class="submenu  <?php if ((strpos($_SERVER['PHP_SELF'], 'jobs.php')) || (strpos($_SERVER['PHP_SELF'], 'add-jobs.php')) || (strpos($_SERVER['PHP_SELF'], 'edit-job.php'))) echo 'active'; ?>">
-                            <a href="#"><i class="bi bi-briefcase-fill"></i> <span> Jobs</span> <span class="menu-arrow"></span></a>
+                            <a href="#"><i><img class="img-fluid" src="assets/img/icons/briefcase.svg" alt="Icon"></i> <span> Jobs</span> <span class="menu-arrow"></span></a>
                             <ul>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'jobs.php')) echo 'class="active"'; ?> href="jobs.php">Jobs List</a></li>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'add-job.php')) echo 'class="active"'; ?> href="add-job.php">Add Jobs</a></li>
@@ -176,10 +176,10 @@ ini_set('display_errors', 1);
                             </ul>
                         </li>
                         <li <?php if ((strpos($_SERVER['PHP_SELF'], 'admin-profile.php'))  || (strpos($_SERVER['PHP_SELF'], 'edit-admin-profile.php'))) echo 'class="active"'; ?>>
-                            <a href="admin-profile.php"><i class="bi bi-person-square"></i><span>My Profile </span></a>
+                            <a href="admin-profile.php"><i><img class="img-fluid" src="assets/img/icons/profile.svg" alt="Icon"></i></i><span>My Profile </span></a>
                         </li>
                         <li>
-                            <a href="logout.php"><i class="bi bi-box-arrow-right"></i> <span>Logout</span></a>
+                            <a href="logout.php"><i><img class="img-fluid" src="assets/img/icons/logout.svg" alt="Icon"></i> <span>Logout</span></a>
                         </li>
                     </ul>
                 </div>

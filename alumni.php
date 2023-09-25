@@ -31,21 +31,21 @@ $result = $conn->query($sql);
   </div><!-- End Breadcrumbs -->
 
   <div id="filter-options">
-    <label for="university-select">University:</label>
+    <label for="university-select">Select University:</label>
     <select id="university-select" class="form-control form-control-lg">
       <option value="all" selected class="input-fields">All</option>
       <option value="pokhara" class="input-fields"> Pokhara University</option>
       <!-- <option value="<?= $row['university'] ?>" class="input-fields">University</option> -->
     </select>
 
-    <label for="school-select" >College:</label>
+    <label for="school-select" >Select College:</label>
     <select id="school-select"class="form-control">
       <option value="all" selected class="input-fields">All</option>
       <option value="utc" class="input-fields">United Technical College </option>
       <!-- <option value="tuc" class="input-fields">TUC</option> -->
     </select>
 
-    <label for="faculty-select">Faculty:</label>
+    <label for="faculty-select">Select Faculty:</label>
     <select id="faculty-select" class="form-control form-control-lg">
       <option value="all" selected class="input-fields">All</option>
       <option value="computer" class="input-fields">BE Computer </option>
@@ -53,6 +53,8 @@ $result = $conn->query($sql);
       <option value="electrical" class="input-fields">BE Electrical and Electronics</option>
     </select>
   </div>
+  
+
   <div style="display: flex; justify-content: center; align-items: center;">
   <input class="form-control" id="myInput" type="text" placeholder="Search Alumni .." style="width: 300px;">
 </div>
@@ -83,12 +85,12 @@ $result = $conn->query($sql);
                 <img src="upload_images./<?= $row['alumni_image'] ?>" class="img-fluid " style="height:250px; width:250px" alt="<?= $row['alumni_image'] ?>">
                 <div class="member-content">
                   <h4><?= $row['first_name'] ?> <?= $row['middle_name'] ?> <?= $row['last_name'] ?></h4>
-                  <span>Batch : <?= $row['batch'] ?></span>
+                  <span>  <?= $row['faculty'] ?> , <?= $row['batch'] ?></span>
                   <p>
-                    Magni qui quod omnis unde et eos fuga et exercitationem. Odio veritatis perspiciatis quaerat qui aut aut aut
+                    
                   </p>
                   <a href="alumni-details.php?alumni_id=<?=$row['alumni_id']?>">
-                    <h4> View Details</h4>
+                    <h4 style="color: #DC3233;" > View Details</h4>
                   </a>
                 </div>
               </div>

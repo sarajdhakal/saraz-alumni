@@ -25,7 +25,7 @@ $row = $result->fetch_assoc();
 <div class="breadcrumbs" data-aos="fade-in">
   <div class="container">
     <h2>Alumni Details</h2>
-    <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+    <p>. </p>
   </div>
 </div><!-- End Breadcrumbs -->
 
@@ -43,7 +43,7 @@ $row = $result->fetch_assoc();
             <p class="text-muted mb-4"><?=$row['address']?></p>
                   </div>
         </div>
-        <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+        <!-- <div class="list-group-item d-flex justify-content-between align-items-center p-3">
         <h5>Contact Details</h5>
         </div>
         <div class="card mb-4 mb-lg-0">
@@ -66,7 +66,7 @@ $row = $result->fetch_assoc();
               </li>
             </ul>
           </div>
-        </div>
+        </div> -->
       </div>
       <div class="col-lg-8">
         <div class="card mb-4">
@@ -142,9 +142,9 @@ $row = $result->fetch_assoc();
               <div class="card-body">
                 <p class="mb-4"><span class="text-primary font-italic me-1">Alumni Contribution</span>
                 </p>
-                <p class="mb-1" style="font-size: 1rem;">Project Title</p>
+                <p class="mb-1" style="font-size: 1rem;"><?=$row['project1_name']?></p>
                
-                <p class="mt-4 mb-1" style="font-size: .9rem;">Description</p>                
+                <p class="mt-4 mb-1" style="font-size: .9rem;"><?=$row['project1_description']?></p>                
               </div>
             </div>
           </div>
@@ -153,9 +153,9 @@ $row = $result->fetch_assoc();
               <div class="card-body">
                 <p class="mb-4"><span class="text-primary font-italic me-1">Alumni Contribution</span>
                 </p>
-                <p class="mb-1" style="font-size: 1rem;">Project Title</p>
+                <p class="mb-1" style="font-size: 1rem;"><?=$row['project2_name']?></p>
                
-                <p class="mt-4 mb-1" style="font-size: .9rem;">Description</p>                
+                <p class="mt-4 mb-1" style="font-size: .9rem;"><?=$row['project2_description']?></p>                
               </div>
             </div>
           </div>
