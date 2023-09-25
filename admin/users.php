@@ -58,8 +58,8 @@ include 'head/header.php';
                                         <th>Address</th>
                                         <th>Enrollment Year</th>
                                         <th>Passout Year</th>
-                                        <th>College</th>
                                         <th>University</th>
+                                        <th>College</th>
                                         <th>Faculty</th>
                                         <th>Work</th>
                                         <th>Social Media Contact1</th>
@@ -108,7 +108,7 @@ include 'head/header.php';
                                                             <input type="hidden" name="user_id" value="<?= $row["user_id"] ?>">
                                                             <button type="button" name="delete_user" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal_<?= $row['user_id'] ?>"><i class="bi bi-trash3"></i> Delete </button>
                                                             <div class="modal fade" id="exampleModal_<?= $row['user_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                                <div class="modal-dialog">
+                                                                <div class="modal-dialog text-start">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>

@@ -101,7 +101,7 @@ if (isset($_POST['add_alumni'])) {
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="edit-alumni.php?alumni_id=<?= $row['alumni_id'] ?>" method="post" enctype="multipart/form-data">
+                        <form action="edit-alumnis.php?alumni_id=<?= $row['alumni_id'] ?>" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-12">
                                     <h5 class="form-title"><span>Alumni Details</span></h5>

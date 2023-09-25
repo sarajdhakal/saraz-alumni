@@ -91,20 +91,20 @@ if (isset($_POST['add_jobs'])) {
                                 }
                                 ?>
                                 <img src="../upload_images/<?= $row["banner_image"] ?>" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                                
-                                    <div class="col-12 col-sm-4">
 
+                                <div class="col-12 col-sm-4">
+
+                                    <div class="form-group students-up-files">
                                         <div class="form-group students-up-files">
-                                            <div class="form-group students-up-files">
-                                                <label>Upload New Image</label>
-                                                <div class="upload">
-                                                    <input class="form-control" type="file" id="formFile" name="banner_image" accept="image/png, image/jpeg">
-                                                </div>
+                                            <label>Upload New Image</label>
+                                            <div class="upload">
+                                                <input class="form-control" type="file" id="formFile" name="banner_image" accept="image/png, image/jpeg">
                                             </div>
                                         </div>
-
                                     </div>
-                        
+
+                                </div>
+
                                 <p class="font-weight-normal " style=" color:red;"></p>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">

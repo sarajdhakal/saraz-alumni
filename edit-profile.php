@@ -194,7 +194,7 @@ if ($_POST) {
                                     <?php
                                     if ($row["role"] === 'Alumni') {
                                     ?> <div class="input-group input-group-merge">
-                                            <input type="text" name='role' class="form-control-plaintext" id="role" value=" <?= $row["role"] ?>" readonly>
+                                            <input type="text" name='role' class="form-control-plaintext" id="role" value="<?= $row["role"] ?>" readonly>
                                         </div>
                                     <?php } else {
                                     ?>
@@ -208,7 +208,7 @@ if ($_POST) {
                                     <?php
                                     if ($row["role"] === 'Alumni') {
                                     ?> <div class="input-group input-group-merge">
-                                            <input type="text" name='passout_year' class="form-control-plaintext" id="passout_year" value=" <?= $row["passout_year"] ?>" readonly>
+                                            <input type="text" name='passout_year' class="form-control-plaintext" id="passout_year" value="<?= $row["passout_year"] ?>" readonly>
                                         </div>
                                     <?php } else {
                                     ?>
@@ -220,7 +220,7 @@ if ($_POST) {
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="inputPassword4" class="form-label">Address</label>
-                                    <input type="text" class="form-control" name="adddress" placeholder=" Address" value="<?= $row["adddress"] ?>">
+                                    <input type="text" class="form-control" name="adddress" placeholder=" Address" value="<?= $row["adddress"] ?>" />
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label for="inputPassword4" class="form-label">University</label>

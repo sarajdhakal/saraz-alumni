@@ -69,7 +69,7 @@ if (isset($_POST['add_testimonials'])) {
       <div class="col-sm-12">
         <div class="card comman-shadow">
           <div class="card-body">
-            <form action="edit-testimonials.php?testimonials_id=<?= $row['testimonials_id'] ?>" method="post" enctype="multipart/form-data">
+            <form action="edit-testimonial.php?testimonials_id=<?= $row['testimonials_id'] ?>" method="post" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-12">
                   <h5 class="form-title student-info">

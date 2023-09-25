@@ -1,5 +1,6 @@
 <?php include 'head/header.php';
 $error_message1 = '';
+$flag=0;
 function validate_form($data)
 {
   $data = trim($data);
@@ -11,16 +12,23 @@ if ($_POST) {
   $testimonials_name = validate_form($_POST['testimonials_name']);
   $post = validate_form($_POST['post']);
   $description = validate_form($_POST['description']);
+  $testimonials_image = $_FILES['testimonials_image']['name'];
+    if ($testimonials_image === '') {
+        $testimonials_image = "2.png";
+    }
 
   if (strlen($testimonials_name) < 3) {
     $error_message1 = "Testimonials name shoould be greater than 2 letters.";
     $flag = 1;
   }
   if ($flag == 0) {
-    $sql = "INSERT INTO testimonials (testimonials_name, post, description) 
-         VALUES ('$testimonials_name', '$post', '$description')";
+    $sql = "INSERT INTO testimonials (testimonials_name, post, description,testimonials_image) 
+         VALUES ('$testimonials_name', '$post', '$description','$testimonials_image')";
+         
     if ($conn->query($sql) === true) {
-      $error_message1 = 'Successfully inserted.';
+      move_uploaded_file($_FILES['testimonials_image']['tmp_name'], "../upload_images/$testimonials_image");
+      $flag = 2;
+      $error_message1 = 'Successfully added.';
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -50,7 +58,7 @@ if ($_POST) {
       <div class="col-sm-12">
         <div class="card comman-shadow">
           <div class="card-body">
-            <form action="add-testimonial.php" method="post">
+            <form action="add-testimonial.php" method="post" enctype="multipart/form-data">
               <div class="row">
                 <div class="col-12">
                   <h5 class="form-title student-info">
@@ -58,7 +66,22 @@ if ($_POST) {
 
                   </h5>
                 </div>
-                <p class="font-weight-normal " style=" color:red;"><?php echo $error_message1; ?></p>
+                <?php
+                                if ($flag == 2) {
+                                ?>
+                                    <div class="alert alert-success " role="alert">
+                                        <?php echo $error_message1; ?>
+                                    </div>
+                                <?php
+                                } else if ($flag == 1) {
+                                ?>
+                                    <div class="alert alert-danger p-1 text-danger" role="alert">
+                                        <?php echo $error_message1; ?>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                <p class="font-weight-normal " style=" color:red;"></p>
                 <div class="col-12 col-sm-4">
                   <div class="form-group local-forms">
                     <label>Name
@@ -81,15 +104,22 @@ if ($_POST) {
                   </div>
                 </div>
 
+                <div class="form-group students-up-files">
+                                <label>Upload Admin Image</label>
+                                <div class="upload">
+                                    <input class="form-control" type="file" id="formFile" name="testimonials_image" accept="image/png, image/jpeg">
+                                </div>
+                            </div>
+
                 <div class="col-12">
                   <div class="student-submit text-center">
                     <button type="submit" class="btn btn-primary">
                       Submit
+                      </form>
                     </button>
                   </div>
                 </div>
               </div>
-            </form>
           </div>
         </div>
       </div>

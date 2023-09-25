@@ -121,7 +121,7 @@ if (isset($_POST['add_student'])) {
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group students-up-files">
                                     <div class="form-group students-up-files">
-                                    <label>Upload student Images</label>
+                                    <label>Upload student Image</label>
                                     <div class="upload">
                                         <input class="form-control" type="file" id="formFile" name="student_image" accept="image/png, image/jpeg">
                                     </div>

@@ -35,7 +35,7 @@ $result = $conn->query($sql);
                                                     class="feather-list"></i></a>
                                             <a href="#" class="btn btn-outline-primary me-2"><i
                                                     class="fas fa-download"></i> Download</a> -->
-                                    <a href="add-admin.php" class="btn btn-primary"><i class="fas fa-plus"></i> Add Jobs</a>
+                                    <a href="add-job.php" class="btn btn-primary"><i class="fas fa-plus"></i> Add Jobs</a>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +94,7 @@ $result = $conn->query($sql);
                                                         <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal_<?= $row['job_id'] ?>"><i class="bi bi-trash3"></i> Delete </button>
                                                         <div class="modal fade" id="exampleModal_<?= $row['job_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog">
-                                                                <div class="modal-content">
+                                                                <div class="modal-content text-start">
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
                                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

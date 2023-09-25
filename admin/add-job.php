@@ -140,7 +140,7 @@ if ($_POST) {
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="student-submit">
+                                    <div class="student-submit text-center">
                                         <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Submit</button>
                                     </div>
                                 </div>

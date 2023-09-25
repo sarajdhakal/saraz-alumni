@@ -137,7 +137,7 @@ if (isset($_POST['add_event'])) {
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
-                                        <label>Date and Time <span class="login-danger">*</span></label>
+                                        <label>Date <span class="login-danger">*</span></label>
                                         <input type="date" class="form-control" id="inputPassword4" name="date_and_time" value="<?= $row['date_and_time'] ?>" required>
                                     </div>
                                 </div>

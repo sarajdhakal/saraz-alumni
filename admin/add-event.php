@@ -109,7 +109,7 @@ if ($_POST) {
                                 </div>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
-                                        <label>Date and Time <span class="login-danger">*</span></label>
+                                        <label>Date  <span class="login-danger">*</span></label>
                                         <input type="date" class="form-control" id="inputPassword4" name="date_and_time" required>
                                     </div>
                                 </div>
@@ -134,8 +134,8 @@ if ($_POST) {
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="student-submit">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    <div class="student-submit text-center">
+                                        <button type="submit" class="btn btn-primary"> <i class="bi bi-send"></i> Submit</button>
                                     </div>
                                 </div>
                             </div>
