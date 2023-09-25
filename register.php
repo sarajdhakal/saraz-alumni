@@ -28,18 +28,16 @@ if ($_POST) {
   $sql = "SELECT * FROM users WHERE email='$email' ";
   $result = $conn->query($sql);
 
-  $sql2="SELECT student_email from student WHERE student_email='$email' ";
-  $result2= $conn->query($sql2);
-  if ($result2->num_rows == 0){
-    $error_message1= "Your email address is not registered to college.";
-    $flag=1;
-  }
-  else if ($result->num_rows > 0) {
+  $sql2 = "SELECT student_email from student WHERE student_email='$email' ";
+  $result2 = $conn->query($sql2);
+  if ($result2->num_rows == 0) {
+    $error_message1 = "Your email address is not registered to college.";
+    $flag = 1;
+  } else if ($result->num_rows > 0) {
     // output data of each row
     $error_message1  = "User already existed.";
     $flag = 1;
-  }   
-  else {
+  } else {
     if (strlen($fname) < 3) {
       $error_message1  = "First name should have more than 2 letters.";
       $flag = 1;
@@ -77,8 +75,6 @@ if ($_POST) {
 ?>
 
 <head>
-
-
   <link href="assets/css/loginpage.css" rel="stylesheet">
 </head>
 <main>
@@ -119,9 +115,10 @@ if ($_POST) {
             </div>
           </div>
           <div class="two-forms">
-            <div class="input-box">
+            <div class="input-box info-tooltip">
               <input type="email" name="email" class="input-field" placeholder="Email" required>
               <i class="bx bx-envelope"></i>
+              <span class="tooltip-text">Please make sure to enter a valid email address that is registered in college.</span>
             </div>
             <div class="input-box">
               <input type="text" name="phone_number" class="input-field" placeholder="Phone Number" required>

@@ -41,6 +41,9 @@ if (isset($_POST['delete_user'])){
     $result = $conn->query($sql);
     header('location:alumni.php');
    }
-
-
+   if (isset($_POST['delete_student'])){
+    $student_id = $_POST['student_id'];
+    $sql = "DELETE FROM student WHERE student_id='$student_id'";   
+    $result = $conn->query($sql);
+    header('location:students.php');}
 ?>

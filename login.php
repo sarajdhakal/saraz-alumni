@@ -46,6 +46,7 @@ function validate_form($data) {
 
 <head>
 <link href="assets/css/loginpage.css" rel="stylesheet">
+
 </head>
 
  <main >
@@ -76,9 +77,14 @@ function validate_form($data) {
                 <i class="bx bx-envelope"></i>
             </div>
             <div class="input-box">
-                <input type="password" class="input-field" name="password" placeholder="Password" required>
-                <i class="bx bx-lock-alt"></i>
+            <div class="password-container">
+                            <input type="password" class="input-field" name="password" placeholder="Password" id="myInput" required>
+                            <i class="bx bx-lock-alt"></i>
+                            <input type="checkbox" id="showPasswordCheckbox">
+                           <small> <label style="font-size: small; color: #ede3e3a6;" for="showPasswordCheckbox" id="showPasswordLabel">Show Password</label></small>
+                        </div>
             </div>
+            
             <div class="input-box">
                 <button type="submit" class="submit" >Sign In</button>
             </div>
@@ -92,6 +98,16 @@ function validate_form($data) {
     </div>
 </div>     
  </main>
+ <script>
+var passwordInput = document.getElementById('myInput');
+var showPasswordCheckbox = document.getElementById('showPasswordCheckbox');
+var showPasswordLabel = document.getElementById('showPasswordLabel');
+
+showPasswordCheckbox.addEventListener('change', function() {
+    passwordInput.type = this.checked ? 'text' : 'password';
+    showPasswordLabel.textContent = this.checked ? 'Hide Password' : 'Show Password';
+});
+</script>
  <script src="assets/js/jquery-3.6.0.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/feather.min.js"></script>
@@ -99,5 +115,6 @@ function validate_form($data) {
     <script src="assets/plugins/apexchart/apexcharts.min.js"></script>
     <script src="assets/plugins/apexchart/chart-data.js"></script>
     <script src="assets/js/script.js"></script>
+
 </body>
 </html>

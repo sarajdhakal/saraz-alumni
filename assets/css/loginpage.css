@@ -167,3 +167,25 @@ header{
     }
    
 }
+/* Style for the info tooltip */
+.info-tooltip {
+    position: relative;
+    display: inline-block;
+  }
+
+  .info-tooltip .tooltip-text {
+    display: none;
+    position: absolute;
+    top: 70%;
+    left: 0;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  .info-tooltip:hover .tooltip-text {
+    display: block;
+  }
