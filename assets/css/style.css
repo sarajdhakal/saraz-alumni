@@ -857,6 +857,7 @@ section {
   background: #f6f7f6;
   padding: 10px 15px;
   margin-bottom: 15px;
+  width: 400px;
 }
 
 .course-details .course-info h5 {
@@ -1537,7 +1538,7 @@ section {
   line-height: 24px;
   margin-bottom: 0;
   font-family: "Raleway", sans-serif;
-  color: #777777;
+  color: #000000;
 }
 
 #footer .footer-top h4 {
@@ -1576,7 +1577,7 @@ section {
 }
 
 #footer .footer-top .footer-links ul a {
-  color: #777777;
+  color: #020202;
   transition: 0.3s;
   display: inline-block;
   line-height: 1;
@@ -1598,4 +1599,8 @@ section {
 
 #footer .credits a:hover {
   color: #5fcf80;
+}
+#footer .row {
+display: flex;
+justify-content: space-between;
 }

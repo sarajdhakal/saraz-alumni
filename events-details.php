@@ -19,7 +19,7 @@ if($_GET['id']==''){
   <div class="breadcrumbs" data-aos="fade-in">
     <div class="container">
       <h2>Events Details</h2>
-      <p>Est dolorum ut non facere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
+      <p>AMS streamlines event organization, communication, registration, networking, and adapts to evolving technology. </p>
     </div>
   </div><!-- End Breadcrumbs -->
 
@@ -28,7 +28,7 @@ if($_GET['id']==''){
     <div class="container" data-aos="fade-up">
       <div class="row">
         <div class="col-lg-8">
-          <img src="assets/img/events-1.jpg" class="img-fluid" alt="">
+          <img src="upload_images/<?= $row['banner_image'] ?>" class="img-fluid" alt="">
           <h3><?=$row['event_title']?></h3>
           <p>
           <?=$row['description']?>

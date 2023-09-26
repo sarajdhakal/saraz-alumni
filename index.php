@@ -108,7 +108,7 @@ $result1 = $conn->query($sql1);
     while($row = $result->fetch_assoc()){ ?>
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
           <div class="course-item">
-            <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
+            <img src="upload_images/<?= $row["banner_image"] ?>" class="img-fluid" alt="...">
             <div class="course-content">
               <h3 class="text-danger"><?= $row["job_title"] ?></h3>
               <p><?= $row["description"] ?></p>
@@ -165,7 +165,7 @@ $result1 = $conn->query($sql1);
         <div class="col-md-6 d-flex align-items-stretch">
           <div class="card">
             <div class="card-img">
-              <img src="assets/img/events-1.jpg" alt="...">
+            <img src="upload_images/<?= $row1["banner_image"] ?>" alt="...">
             </div>
             <div class="card-body">
               <h5 class="card-title text-danger"><?=$row1['event_title']?></h5>

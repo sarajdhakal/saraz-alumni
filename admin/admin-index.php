@@ -45,7 +45,8 @@ $row7 = $result7->fetch_assoc();
                         <div class="db-widgets d-flex justify-content-between align-items-center">
                             <div class="db-info">
                                 <h6>Users</h6>
-                                <h3><?= $row['users'] ?></h3>
+                                <h3 class="counter" data-end="<?= $row['users'] ?>">1</h3>
+                            
                             </div>
                             <div class="db-icon">
                                 <img src="assets/img/icons/user.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">
@@ -60,7 +61,8 @@ $row7 = $result7->fetch_assoc();
                         <div class="db-widgets d-flex justify-content-between align-items-center">
                             <div class="db-info">
                                 <h6>Adminstrator</h6>
-                                <h3><?= $row5['admins'] ?></h3>
+                                <h3 class="counter" data-end="<?= $row5['admins'] ?>">1</h3>
+                                
                             </div>
                             <div class="db-icon">
                                 <img src="assets/img/icons/admin.png" alt="Dashboard Icon" style="width: 50px; height: 50px;">
@@ -75,7 +77,8 @@ $row7 = $result7->fetch_assoc();
                         <div class="db-widgets d-flex justify-content-between align-items-center">
                             <div class="db-info">
                                 <h6>Students</h6>
-                                <h3><?= $row2['students'] ?></h3>
+                                <h3 class="counter" data-end="<?= $row2['students'] ?>">1</h3>
+                                
                             </div>
                             <div class="db-icon">
                                 <img src="assets/img/icons/student.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">
@@ -90,7 +93,8 @@ $row7 = $result7->fetch_assoc();
                         <div class="db-widgets d-flex justify-content-between align-items-center">
                             <div class="db-info">
                                 <h6>Alumni</h6>
-                                <h3><?= $row6['alumni'] ?></h3>
+                                <h3 class="counter" data-end="<?= $row6['alumni'] ?>">1</h3>
+                                
                             </div>
                             <div class="db-icon">
                                 <img src="assets/img/icons/alumni.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">
@@ -105,7 +109,7 @@ $row7 = $result7->fetch_assoc();
                         <div class="db-widgets d-flex justify-content-between align-items-center">
                             <div class="db-info">
                                 <h6>Events</h6>
-                                <h3><?= $row3['events'] ?></h3>
+                                <h3 class="counter" data-end="<?= $row3['events'] ?>">1</h3>
                             </div>
                             <div class="db-icon">
                                 <img src="assets/img/icons/calendar.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">
@@ -120,7 +124,7 @@ $row7 = $result7->fetch_assoc();
                         <div class="db-widgets d-flex justify-content-between align-items-center">
                             <div class="db-info">
                                 <h6>Jobs</h6>
-                                <h3><?= $row4['jobs'] ?></h3>
+                                <h3 class="counter" data-end="<?= $row4['jobs'] ?>">1</h3>
                             </div>
                             <div class="db-icon">
                                 <img src="assets/img/icons/briefcase.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">
@@ -136,7 +140,7 @@ $row7 = $result7->fetch_assoc();
                         <div class="db-widgets d-flex justify-content-between align-items-center">
                             <div class="db-info">
                                 <h6>Testimonials</h6>
-                                <h3><?= $row1['users'] ?></h3>
+                                <h3 class="counter" data-end="<?= $row1['users'] ?>">1</h3>
                             </div>
                             <div class="db-icon">
                                 <img src="assets/img/icons/testimonial.svg" alt="Dashboard Icon" style="width: 50px; height: 50px;">

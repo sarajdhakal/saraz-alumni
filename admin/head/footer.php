@@ -19,7 +19,28 @@
     });
 </script>
 
+<script>$(document).ready(function () {
+    // Function to animate the counters
+    function animateCounter(counterElement, endValue) {
+        let current = 1;
+        const step = Math.ceil(endValue / 400); // Increased the step for a slower animation
 
+        const counterInterval = setInterval(function () {
+            if (current >= endValue) {
+                clearInterval(counterInterval);
+                current = endValue;
+            }
+            counterElement.text(current);
+            current += step;
+        }, 50); // Increased the interval for a slower animation
+    }
+
+    // Call the animation function for each counter on page load
+    $('.counter').each(function () {
+        const endValue = parseInt($(this).data('end'));
+        animateCounter($(this), endValue);
+    });
+});</script>
 </body>
 
 </html>

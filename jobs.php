@@ -86,7 +86,7 @@ if ($_POST) {
         ?>
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
               <div class="course-item">
-                <img src="assets/img/course-1.jpg" class="img-fluid" alt="...">
+                <img src="upload_images/<?=$row['banner_image']?>" class="img-fluid" alt="...">
                 <div class="course-content">
                   <h3><?= $row["job_title"] ?></h3>
                   <p><?= $row["description"] ?></p>
@@ -109,8 +109,6 @@ if ($_POST) {
         }
         ?>
 
-        <!-- End Course Item-->
-
         <!-- <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
           <div class="course-item">
             <img src="assets/img/course-2.jpg" class="img-fluid" alt="...">
@@ -124,19 +122,7 @@ if ($_POST) {
             </div>
           </div>
         </div> End Course Item -->
-        <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
-          <div class="course-item">
-            <img src="assets/img/course-3.jpg" class="img-fluid" alt="...">
-            <div class="course-content">
-              <h3><a href="jobs-details.php">Copywriting</a></h3>
-              <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
-              <h6><em>Offered By : Organization Name</em></h6>
-              <a href="jobs-details.php">
-                <h4>View Details</h4>
-              </a>
-            </div>
-          </div>
-        </div> <!-- End Course Item-->
+       
 
         <? $databse = $row["role"] ?>
         <?php

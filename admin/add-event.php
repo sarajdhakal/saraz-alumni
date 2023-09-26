@@ -128,7 +128,7 @@ if ($_POST) {
                                     </div>
                                 </div>
                                 <div class="form-group students-up-files">
-                                    <label>Upload Jobs Images</label>
+                                    <label>Upload Event Image</label>
                                     <div class="upload">
                                         <input class="form-control" type="file" id="formFile" name="banner_image" accept="image/png, image/jpeg">
                                     </div>

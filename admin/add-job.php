@@ -106,7 +106,7 @@ if ($_POST) {
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
                                         <label>Type <span class="login-danger">*</span></label>
-                                        <input type="text" class="form-control" id="inputEmail4" name="type" placeholder="Eg: Sales And Marketing" required>
+                                        <input type="text" class="form-control" id="inputEmail4" name="type" placeholder="Eg: Full Time" required>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">

@@ -1,6 +1,7 @@
 <?php
 include 'head/header.php';
 $error_fname = $error_lname = $error_email = $error_pass = $error_rpass = $error_eyear = $error_pyear = $error_message = $error_message1 = '';
+$flag = 0;
 function validate_form($data)
 {
     $data = trim($data);
@@ -26,7 +27,10 @@ if ($_POST) {
     $work = validate_form($_POST['work']);
     $scmedia1 = validate_form($_POST['scmedia1']);
     $scmedia2 = validate_form($_POST['scmedia2']);
-
+    $user_image = $_FILES['user_image']['name'];
+    if ($user_image === '') {
+        $user_image = "2.png";
+    }
     $sql = "SELECT * FROM users WHERE email='$email' ";
     $result = $conn->query($sql);
     $flag = 0;
@@ -34,6 +38,7 @@ if ($_POST) {
         // output data of each row
         $error_message1 = "User already existed.";
     } else {
+
         if (strlen($fname) < 3) {
             $error_message1 = "First name > 2 letters.";
             $flag = 1;
@@ -42,6 +47,15 @@ if ($_POST) {
             $flag = 1;
         } else if ($pass != $rpass) {
             $error_message1 = "Password not matched";
+            $flag = 1;
+        } else if (strlen($pass) < 8) {
+            $error_message1 = "Password must be at least 8 characters";
+            $flag = 1;
+        } else if (!preg_match("/[a-z]/i", $pass)) {
+            $error_message1 = ' Password must contain at least one letter';
+            $flag = 1;
+        } else if (!preg_match("/[0-9]/", $pass)) {
+            $error_message1 = 'Password must contain at least one number';
             $flag = 1;
         } else if ($role == 'Alumni' && $pyear == '') {
             $error_message1 = 'Alumni must enter passout year.';
@@ -57,12 +71,14 @@ if ($_POST) {
         }
         $pass = password_hash($pass, PASSWORD_DEFAULT);
         if ($flag == 0) {
-            $sql = "INSERT INTO users (firstname, lastname, email, phone_number,password,role,gender,enrollment_year,passout_year,adddress,college,university,faculty,work,scmedia1,scmedia2) 
+            move_uploaded_file($_FILES['user_image']['tmp_name'], "../upload_images/$user_image");
+            $sql = "INSERT INTO users (firstname, lastname, email, phone_number,password,role,gender,enrollment_year,passout_year,adddress,college,university,faculty,work,scmedia1,scmedia2,user_image) 
                    VALUES ('$fname', '$lname', '$email', '$phone','$pass','$role','$gender','$eyear','$pyear', '$address','$college','$university','$faculty','$work', 
- '$scmedia1','$scmedia2' )";
+ '$scmedia1','$scmedia2','$user_image' )";
             if ($conn->query($sql) === true) {
+                $flag = 2;
                 $error_message1 = 'Successfully registered.';
-                header('location:add-user.php');
+                // header('location:add-user.php');
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }
@@ -98,7 +114,22 @@ if ($_POST) {
                                 <div class="col-12">
                                     <h5 class="form-title student-info">User Information</h5>
                                 </div>
-                                <p class="font-weight-normal " style=" color:red;"><?php echo $error_message1; ?></p>
+                                <?php
+                                if ($flag == 2) {
+                                ?>
+                                    <div class="alert alert-success " role="alert">
+                                        <?php echo $error_message1; ?>
+                                    </div>
+                                <?php
+                                } else if ($flag == 1) {
+                                ?>
+                                    <div class="alert alert-danger p-1 text-danger" role="alert">
+                                        <?php echo $error_message1; ?>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                                <p class="font-weight-normal " style=" color:red;"></p>
                                 <div class="col-12 col-sm-4">
                                     <div class="form-group local-forms">
                                         <label>First Name <span class="login-danger">*</span></label>
@@ -115,6 +146,9 @@ if ($_POST) {
                                     <div class="form-group local-forms">
                                         <label>Password <span class="login-danger">*</span></label>
                                         <input class="form-control" type="password" placeholder=" Password" name="password" required>
+                                        <small id="passwordHelpBlock" class="form-text text-muted">
+                                       Must be at least 8 characters with at least one letter & number.
+                                        </small>
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-4">
@@ -217,11 +251,16 @@ if ($_POST) {
                                         <input type="text" class="form-control" id="inputimage" name="scmedia2" placeholder="Add your Social Media Profile Link(Any Other)" value="">
                                     </div>
 
-
+                                    <div class="form-group students-up-files">
+                                        <label>Upload User Image</label>
+                                        <div class="upload">
+                                            <input class="form-control" type="file" id="formFile" name="user_image" accept="image/png, image/jpeg">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-12 text-center">
                                     <div class="student-submit">
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Submit</button>
 
                                     </div>
                                 </div>

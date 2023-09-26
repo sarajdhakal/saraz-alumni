@@ -1,5 +1,16 @@
 <?php
 include 'head/header.php';
+$flag = 0;
+if (isset($_SESSION['job_deleted'])) {
+    if ($_SESSION['job_deleted'] === true) {
+        $flag = 1;
+        $error_message1 = "Job deleted successfully!";
+    } else {
+        $flag = 2;
+        $error_message1 = "Job deletion failed!";
+    }
+    unset($_SESSION['job_deleted']);
+}
 $sql = "SELECT * FROM jobs";
 $result = $conn->query($sql);
 
@@ -39,7 +50,21 @@ $result = $conn->query($sql);
                                 </div>
                             </div>
                         </div>
-
+                        <?php
+                        if ($flag == 1) {
+                        ?>
+                            <div class="alert alert-success " role="alert">
+                                <?php echo $error_message1; ?>
+                            </div>
+                        <?php
+                        } else if ($flag == 2) {
+                        ?>
+                            <div class="alert alert-danger p-1 text-danger" role="alert">
+                                <?php echo $error_message1; ?>
+                            </div>
+                        <?php
+                        }
+                        ?>
                         <div class="table-responsive">
                             <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
                                 <thead class="student-thread">
@@ -88,15 +113,15 @@ $result = $conn->query($sql);
                                                 <td class="text-center">
                                                     <a href="edit-job.php?id=<?= $row['job_id'] ?>" class="btn btn-primary m-1" role="button"><i class="fa fa-eye"></i>View</a>
                                                     <a href="edit-job.php?job_id=<?= $row["job_id"] ?>" role="button" class="btn btn-success m-1"><i class="fa fa-edit"></i> Edit </a>
-                                                   
+
                                                     <form action="delete.php" method="post">
-                                                        <input type="hidden" name="job_id" id="" value="<?=$row['job_id']?>">
+                                                        <input type="hidden" name="job_id" id="" value="<?= $row['job_id'] ?>">
                                                         <button type="button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal_<?= $row['job_id'] ?>"><i class="bi bi-trash3"></i> Delete </button>
                                                         <div class="modal fade" id="exampleModal_<?= $row['job_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog">
                                                                 <div class="modal-content text-start">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Delete Job</h5>
                                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                     </div>
                                                                     <div class="modal-body">

@@ -20,7 +20,7 @@ ini_set('display_errors', 1);
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>Admin Dashboard</title>
+    <title>Admin Panel | AMS </title>
     <link rel="shortcut icon" href="assets/img/2.png">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
@@ -106,7 +106,7 @@ ini_set('display_errors', 1);
                             <a href="#"><i><img class="img-fluid" src="assets/img/icons/user.svg" alt="Icon"></i> </i><span> Users</span> <span class="menu-arrow "></span></a>
                             <ul>
                                 <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'users.php')) echo 'class="active"'; ?> href="users.php">User List</a></li>
-                                <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'add-user.php')) echo 'class="active"'; ?> href="add-user.php">User Add</a></li>
+                                <li><a <?php if (strpos($_SERVER['PHP_SELF'], 'add-user.php')) echo 'class="active"'; ?> href="add-user.php">Add User</a></li>
                                 <?php  if (strpos($_SERVER['PHP_SELF'], 'edit-user.php')){ ?>
                                 <li><a href="edit-user.php" class="active">Edit User</a></li>
                             <?php  }?>

@@ -114,7 +114,7 @@ if (isset($_POST['add_user'])) {
             <div class="col-sm-12">
                 <div class="card comman-shadow">
                     <div class="card-body">
-                        <form action="edit-users.php?user_id=<?= $row['user_id'] ?>" method="post" enctype="multipart/form-data">
+                        <form action="edit-user.php?user_id=<?= $row['user_id'] ?>" method="post" enctype="multipart/form-data">
                             <div class="row">
 
                                 <div class="col-12">

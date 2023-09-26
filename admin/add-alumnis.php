@@ -57,7 +57,7 @@ if (isset($_POST['add_alumni'])) {
             if ($result) {
                 move_uploaded_file($_FILES['alumni_image']['tmp_name'], "../upload_images/$alumni_image");
                 $flag = 2;
-                $error_message1 = 'Successfully inserted.';
+                $error_message1 = 'Successfully added.';
             } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
             }

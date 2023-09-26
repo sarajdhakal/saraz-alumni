@@ -1,7 +1,17 @@
 <?php
 
 include 'head/header.php';
-
+$flag = 0;
+if (isset($_SESSION['admin_deleted'])) {
+    if ($_SESSION['admin_deleted'] === true) {
+        $flag = 1;
+        $error_message1 = "Admin deleted successfully!";
+    } else {
+        $flag = 2;
+        $error_message1 = "Admin deletion failed!";
+    }
+    unset($_SESSION['admin_deleted']);
+}
 $sql = "SELECT * FROM admin";
 $result = $conn->query($sql);
 
@@ -46,6 +56,21 @@ $row1 = $result1->fetch_assoc();
                                 </div>
                             </div>
                         </div>
+                        <?php
+                        if ($flag == 1) {
+                        ?>
+                            <div class="alert alert-success " role="alert">
+                                <?php echo $error_message1; ?>
+                            </div>
+                        <?php
+                        } else if ($flag == 2) {
+                        ?>
+                            <div class="alert alert-danger p-1 text-danger" role="alert">
+                                <?php echo $error_message1; ?>
+                            </div>
+                        <?php
+                        }
+                        ?>
 
                         <div class="table-responsive">
                             <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
@@ -103,7 +128,7 @@ $row1 = $result1->fetch_assoc();
                                                         <button type="button" name="delete_user" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#exampleModal_<?= $row['admin_id'] ?>"><i class="bi bi-trash3"></i> Delete </button>
                                                             <div class="modal fade" id="exampleModal_<?= $row['admin_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog">
-                                                                    <div class="modal-content">
+                                                                    <div class="modal-content text-start">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

@@ -80,7 +80,7 @@ if ($_POST) {
             <div class="col-md-6 d-flex align-items-stretch">
               <div class="card">
                 <div class="card-img">
-                  <img src="assets/img/events-1.jpg" alt="...">
+                  <img src="upload_images/<?= $row['banner_image'] ?>" alt="...">
                 </div>
                 <div class="card-body">
                   <h5 class="card-title text-danger"><?= $row['event_title'] ?></h5>
@@ -106,28 +106,6 @@ if ($_POST) {
         ?>
 
 
-        <div class="col-md-6 d-flex align-items-stretch">
-          <div class="card">
-            <div class="card-img">
-              <img src="assets/img/events-2.jpg" alt="...">
-            </div>
-            <div class="card-body">
-              <h5 class="card-title"><a href="events-details.php">Marketing Strategies</a></h5>
-              <p class="fst-italic text-center">Sunday, November 15th at 7:00 pm</p>
-              <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
-              <?php
-              if (!isset($_SESSION['is_login'])) { ?>
-                <a href="login.php">
-                  <h4>View Details</h4>
-                </a>
-              <?php } else { ?>
-                <a href="events-details.php">
-                  <h4>View Details</h4>
-                </a>
-              <?php } ?>
-            </div>
-          </div>
-        </div>
 
         <?php
         if (isset($_SESSION['is_login'])) {

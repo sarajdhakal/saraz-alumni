@@ -1,5 +1,17 @@
 <?php
 include 'head/header.php';
+$flag = 0;
+if (isset($_SESSION['event_deleted'])) {
+    if ($_SESSION['event_deleted'] === true) {
+        $flag = 1;
+        $error_message1 = "Event deleted successfully!";
+    } else {
+        $flag = 2;
+        $error_message1 = "Event deletion failed!";
+    }
+    unset($_SESSION['event_deleted']);
+}
+
 $sql = "SELECT * FROM events";
 $result = $conn->query($sql);
 
@@ -41,7 +53,21 @@ $result = $conn->query($sql);
                                 </div>
                             </div>
                         </div>
-
+                        <?php
+                        if ($flag == 1) {
+                        ?>
+                            <div class="alert alert-success " role="alert">
+                                <?php echo $error_message1; ?>
+                            </div>
+                        <?php
+                        } else if ($flag == 2) {
+                        ?>
+                            <div class="alert alert-danger p-1 text-danger" role="alert">
+                                <?php echo $error_message1; ?>
+                            </div>
+                        <?php
+                        }
+                        ?>
                         <div class="table-responsive">
                             <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
                                 <thead class="student-thread">

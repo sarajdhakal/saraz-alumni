@@ -105,7 +105,7 @@ if ($_POST) {
                 </div>
 
                 <div class="form-group students-up-files">
-                                <label>Upload Admin Image</label>
+                                <label>Upload Testimonial Image</label>
                                 <div class="upload">
                                     <input class="form-control" type="file" id="formFile" name="testimonials_image" accept="image/png, image/jpeg">
                                 </div>
@@ -114,7 +114,7 @@ if ($_POST) {
                 <div class="col-12">
                   <div class="student-submit text-center">
                     <button type="submit" class="btn btn-primary">
-                      Submit
+                    <i class="bi bi-send"></i>  Submit
                       </form>
                     </button>
                   </div>

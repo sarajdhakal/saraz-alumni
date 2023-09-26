@@ -23,7 +23,7 @@ $row = $result->fetch_assoc();
   <div class="breadcrumbs" data-aos="fade-in">
     <div class="container">
       <h2>Profile</h2>
-      <p>Edit and Update your Profile </p>
+      <p>View and Update your Profile </p>
       
       <p style="color: red;"><?php echo $error_message1; ?></p>
     </div>

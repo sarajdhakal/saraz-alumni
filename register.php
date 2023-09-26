@@ -47,6 +47,15 @@ if ($_POST) {
     } else if ($pass != $rpass) {
       $error_message1 = "Password not matched";
       $flag = 1;
+    } else if (strlen($pass) < 8) {
+      $error_message1 = "Password must be at least 8 characters";
+      $flag = 1;
+    } else if (!preg_match("/[a-z]/i", $pass)) {
+      $error_message1 = ' Password must contain at least one letter';
+      $flag = 1;
+    } else if (!preg_match("/[0-9]/", $pass)) {
+      $error_message1 = 'Password must contain at least one number';
+      $flag = 1;
     } else if ($role == 'Alumni' && $pyear == '') {
       $error_message1 = 'Alumni must enter passout year.';
       $flag = 1;
@@ -126,12 +135,13 @@ if ($_POST) {
             </div>
           </div>
           <div class="two-forms">
-            <div class="input-box">
+            <div class="input-box info-tooltip">
               <input type="password" name="password" class="input-field" placeholder="Password" required>
               <i class="bx bx-lock-alt"></i>
+              <span class="tooltip-text">Password must be at least 8 characters with at least one letter and at least  one number</span>
             </div>
             <div class="input-box">
-              <input type="password" name="rpassword" class="input-field" placeholder="Repeat Password" required>
+              <input type="password" name="rpassword" class="input-field" placeholder="Confirm Password" required>
               <i class="bx bx-lock-alt"></i>
 
             </div>
@@ -156,24 +166,28 @@ if ($_POST) {
             </div>
           </div>
           <div class="two-forms">
-            <div class="input-box">
+            <div class="input-box info-tooltip">
               <label style="color:white;">Enrollment Year</label><input type="number" name="enrollment_year" class="input-field" placeholder="YYYY" min="1999" max="2023" required>
-              <script>
+              <span class="tooltip-text">Enter your enrollment year in AD.</span>
+
+             <script>
                 document.querySelector("input[type=number]")
                   .oninput = e => console.log(new Date(e.target.valueAsNumber, 0, 1))
               </script>
               <i class="bx bx-calendar"></i>
-              <span style="color: red;"><?php echo $error_eyear; ?></span>
             </div>
-            <div class="input-box">
+            <div class="input-box info-tooltip">
               <label style="color:white;">Passout Year</label><input type="number" name="passout_year" class="input-field" placeholder="YYYY" min="1999" max="2023">
-              <script>
+              <span class="tooltip-text">Enter your passout year in AD.</span>
+             <script>
                 document.querySelector("input[type=number]")
                   .oninput = e => console.log(new Date(e.target.valueAsNumber, 0, 1))
               </script>
               <i class="bx bx-calendar"></i>
             </div>
           </div>
+          <small class="text-white">
+          Be sure to check your <a href="privacy.php"> Eligibility Criteria </a></small>
           <div class="input-box">
             <button type="Submit" class="submit">Sign Up</button>
           </div>

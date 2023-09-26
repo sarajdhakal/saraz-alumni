@@ -69,7 +69,7 @@ if (isset($_POST['add_jobs'])) {
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form action="edit-jobs.php?id=<?= $row['job_id'] ?>" method="post" enctype="multipart/form-data">
+                        <form action="edit-job.php?id=<?= $row['job_id'] ?>" method="post" enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col-12">
                                     <h5 class="form-title"><span>View/Edit Jobs Information</span></h5>

@@ -26,7 +26,7 @@ $result = $conn->query($sql);
   <div class="breadcrumbs">
     <div class="container">
       <h2>Alumni</h2>
-      <p> </p>
+      <p> The alumni management system streamlines communication and facilitates meaningful interactions to strengthen the bond between the institution and its graduates.</p>
     </div>
   </div><!-- End Breadcrumbs -->
 
@@ -137,53 +137,8 @@ $result = $conn->query($sql);
 
 </main><!-- End #main -->
 
-<!-- ======= Footer ======= -->
-<footer id="footer">
-
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
-
-        <div class="col-lg-3 col-md-6 footer-contact">
-          <h3>Alumni Management System</h3>
-          <p> Bharatpur- Chitwan <br><br>
-            <strong>Phone:</strong>#<br>
-            <strong>Email:</strong> hellohi@gmail.com<br>
-          </p>
-        </div>
-
-        <div class="col-lg-2 col-md-6 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="about.php">About us</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="events.php">Events</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="container d-md-flex py-4">
-
-    <div class="me-md-auto text-center text-md-start">
-      <div class="copyright">
-        &copy; Copyright <strong><span>Saraz</span></strong>. All Rights Reserved
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
-        Designed by <a href="#">Saraz Coorporation</a>
-      </div>
-    </div>
-  </div>
-</footer><!-- End Footer -->
-
-<div id="preloader"></div>
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- ======= Footer ======= -->
+  <?php include('head/footer.php'); ?>
 
 
 <script>

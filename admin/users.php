@@ -1,6 +1,17 @@
 <?php
 include 'head/header.php';
+$flag = 0; 
 
+if (isset($_SESSION['user_deleted'])) {
+    if ($_SESSION['user_deleted'] === true) {
+        $flag = 1;
+        $error_message1 = "User deleted successfully!";
+    } else {
+        $flag = 2;
+        $error_message1 = "User deletion failed!";
+    }
+    unset($_SESSION['user_deleted']);
+}
 ?>
 
 <div class="page-wrapper">
@@ -38,7 +49,21 @@ include 'head/header.php';
                                 </div>
                             </div>
                         </div>
-
+                        <?php
+                                if ($flag == 1) {
+                                ?>
+                                    <div class="alert alert-success " role="alert">
+                                        <?php echo $error_message1; ?>
+                                    </div>
+                                <?php
+                                } else if ($flag == 2) {
+                                ?>
+                                    <div class="alert alert-danger p-1 text-danger" role="alert">
+                                        <?php echo $error_message1; ?>
+                                    </div>
+                                <?php
+                                }
+                                ?>
                         <!-- yesbata change  -->
                         <div class="table-responsive">
                             <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
@@ -83,7 +108,7 @@ include 'head/header.php';
                                                 <td>
                                                     <h2 class="table-avatar">
                                                         <a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="../upload_images/<?= $row["user_image"] ?>" alt="User Image" /></a>
-                                                        <a><?= $row["firstname"] ?><?= $row["lastname"] ?></a>
+                                                        <a><?= $row["firstname"] ?> <?= $row["lastname"] ?></a>
                                                     </h2>
                                                 </td>
                                                 <td><?= $row["email"] ?></td>

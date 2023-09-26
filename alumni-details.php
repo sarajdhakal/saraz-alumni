@@ -25,7 +25,7 @@ $row = $result->fetch_assoc();
 <div class="breadcrumbs" data-aos="fade-in">
   <div class="container">
     <h2>Alumni Details</h2>
-    <p>. </p>
+    <p>The alumni management system streamlines communication and facilitates meaningful interactions to strengthen the bond between the institution and its graduates. </p>
   </div>
 </div><!-- End Breadcrumbs -->
 

@@ -1,6 +1,18 @@
 <?php
 
 include 'head/header.php';
+$flag = 0;
+if (isset($_SESSION['testimonial_deleted'])) {
+    if ($_SESSION['testimonial_deleted'] === true) {
+        $flag = 1;
+        $error_message1 = "Testimonial deleted successfully!";
+    } else {
+        $flag = 2;
+        $error_message1 = "Testimonial deletion failed!";
+    }
+    unset($_SESSION['testimonial_deleted']);
+}
+
 $sql = "SELECT * FROM testimonials";
 $result = $conn->query($sql);
 ?>
@@ -39,6 +51,22 @@ $result = $conn->query($sql);
                                 </div>
                             </div>
                         </div>
+
+                        <?php
+                        if ($flag == 1) {
+                        ?>
+                            <div class="alert alert-success " role="alert">
+                                <?php echo $error_message1; ?>
+                            </div>
+                        <?php
+                        } else if ($flag == 2) {
+                        ?>
+                            <div class="alert alert-danger p-1 text-danger" role="alert">
+                                <?php echo $error_message1; ?>
+                            </div>
+                        <?php
+                        }
+                        ?>
                         <div class="table-responsive">
                             <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
                                 <thead class="student-thread">
@@ -49,7 +77,7 @@ $result = $conn->query($sql);
                                             </div>
                                         </th>
                                         <th>Testimonial ID</th>
-                                        <th>Name</th>
+                                        <th>Provider Name</th>
                                         <th>Post</th>
                                         <th>Description</th>
                                         <th>Actions</th>

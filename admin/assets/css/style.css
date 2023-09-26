@@ -3660,42 +3660,6 @@ html {
     border: 1px solid #1877f2;
   }
   
-  .twitter {
-    background-color: #1d9bf0;
-    border: 1px solid #1d9bf0;
-  }
-  
-  .linkedin {
-    background-color: #0a66c2;
-    border: 1px solid #0a66c2;
-  }
-  
-  .insta {
-    background-color: #fe643b;
-    border: 1px solid #fe643b;
-  }
-  
-  .fa-facebook {
-    color: #7085b0;
-  }
-  
-  .fa-twitter {
-    color: #5ebbf4;
-    bottom: -10px !important;
-    right: 18px !important;
-  }
-  
-  .fa-instagram {
-    color: #de7099;
-    bottom: -7px !important;
-    right: 20px !important;
-  }
-  
-  .fa-linkedin-in {
-    color: #4a92b5;
-    bottom: -14px !important;
-    right: 23px !important;
-  }
   
   .card.card-chart,
   .card.comman-shadow {

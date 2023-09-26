@@ -1,4 +1,15 @@
 <?php include('head/header.php');
+$flag = 0;
+if (isset($_SESSION['alumni_deleted'])) {
+    if ($_SESSION['alumni_deleted'] === true) {
+        $flag = 1;
+        $error_message1 = "Alumni deleted successfully!";
+    } else {
+        $flag = 2;
+        $error_message1 = "Alumni deletion failed!";
+    }
+    unset($_SESSION['alumni_deleted']);
+}
 $sql = "SELECT * FROM alumni ";
 $result = $conn->query($sql);
 ?>
@@ -36,6 +47,23 @@ $result = $conn->query($sql);
                                 </div>
                             </div>
                         </div>
+                        <?php
+                        if ($flag == 1) {
+                        ?>
+                            <div class="alert alert-success " role="alert">
+                                <?php echo $error_message1; ?>
+                            </div>
+                        <?php
+                        } else if ($flag == 2) {
+                        ?>
+                            <div class="alert alert-danger p-1 text-danger" role="alert">
+                                <?php echo $error_message1; ?>
+                            </div>
+                        <?php
+                        }
+                        ?>
+
+
 
                         <div class="table-responsive">
                             <table id="dataTable" class="table table-bordered" width="100%" cellspacing="0">
