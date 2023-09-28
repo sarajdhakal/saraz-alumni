@@ -32,7 +32,7 @@ $row = $result->fetch_assoc();
 
         <div class="row">
           <div class="col-lg-8">
-            <img src="assets/img/course-details.jpg" class="img-fluid" alt="">
+            <img src="upload_images/<?=$row['banner_image']?>" class="img-fluid" alt="">
             <h3><?= $row["job_title"] ?></h3>
             <p>
             <?= $row["description"] ?>
